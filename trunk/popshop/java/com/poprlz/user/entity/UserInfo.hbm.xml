@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.poprlz.user.entity">
+	<class name="UserInfo" table="userInfo">
+		<id name="userInfoId" column="userInfoId">
+			<generator class="native" />
+		</id>
+		<property name="userName" not-null="true" column="userName" />
+		<property name="userPassword" not-null="true"
+			column="userPassword" />
+		<property name="userEmail" not-null="true" column="userEmail" />
+		<property name="stutas" not-null="true" column="stutas" />
+		  
+		 <join table="group_user" inverse="true" optional="true">
+		 	<key column="userInfoId"/>
+		 	<many-to-one name="group" column="groupId" class="com.poprlz.user.entity.Group"  lazy="false"/>
+		 </join>  
+			  
+		 
+	</class>
+</hibernate-mapping>
