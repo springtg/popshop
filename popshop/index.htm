@@ -2,68 +2,278 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>pop shop</title>
-<link rel="stylesheet" type="text/css" href="jquery/themes/flora/flora.all.css">
-<link rel="stylesheet" type="text/css" href="css/default.css">
+<title>Main Page Index</title>
+<link rel="stylesheet" type="text/css" href="css/maintenance.css">
+<link rel="stylesheet" type="text/css" href="css/global.css">
+
 <script language="javascript" src="jquery/jquery-1.2.6.js"></script>
-<script language="javascript" src="jquery/jquery.form.js"></script>
-<script language="javascript" src="jquery/jquery.validate.js"></script>
-<script language="javascript" src="jquery/jquery.ui.all.js"></script>
- 
- 
-<script language="javascript" src="js/default.js"></script>
-<script language="javascript" src="js/userInfo.js"></script>
 <script language="javascript" src="js/product.js"></script>
+
+<script language="javascript">
+	function centerColumnLoadInfo(url){
+		try{
+			$("#center_column").load(url);
+		}catch(e){}
+	}
+	categoriesListAction();
+	
+	
+</script>
 </head>
 
 <body>
-<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+<center>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
 <thead>
   <tr>
-    <td>afdafafs
-	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> 
+    <td><a href="javascript:centerColumnLoadInfo('mainPage.php')" title="mainPage" class="button">mainPage</a>
+	<a href="javascript:centerColumnLoadInfo('productListDemo.php')" title="productList" class="button">productList</a>
+	<a href="javascript:centerColumnLoadInfo('priductInfoDemo.php')" title="ProductInfo" class="button">ProductInfo</a>
+	<a href="javascript:centerColumnLoadInfo('login.php')" title="login.php" class="button">login</a>
+	<a href="javascript:centerColumnLoadInfo('register.php')" title="login.php" class="button">register</a>
+	<a href="javascript:centerColumnLoadInfo('summury.php')" title="login.php" class="button">summury</a>
+	<a href="javascript:centerColumnLoadInfo('Shipping.php')" title="login.php" class="button">Shipping</a>
+	<a href="javascript:categoriesListAction()" title="login.php" class="button">catList</a>
+	 </td>
+  </tr>
+ </thead>
+ <tbody> 
+  <tr>
+    <td align="center">
+	
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+<tbody>
+  <tr>
+    <td valign="top"  id="left_column" class="column">
+
+				<!-- Block tags module -->
+<div id="tags_block_left" class="block tags_block">
+	<h4>Tags</h4>
+	<p class="block_content">
+			<a href="/demo/search.php?tag=apple" title="More about apple" class="tag_level1 first_item">apple</a>
+			<a href="/demo/search.php?tag=adhesive" title="More about adhesive" class="tag_level1 item">adhesive</a>
+			<a href="/demo/search.php?tag=sticker" title="More about sticker" class="tag_level1 item">sticker</a>
+
+			<a href="/demo/search.php?tag=superdrive" title="More about superdrive" class="tag_level1 item">superdrive</a>
+			<a href="/demo/search.php?tag=label" title="More about label" class="tag_level1 item">label</a>
+			<a href="/demo/search.php?tag=Ipod+touch" title="More about Ipod touch" class="tag_level1 last_item">Ipod touch</a>
+		</p>
+</div>
+ 
+<!-- Block categories module -->
+<div id="categories_block_left" class="block">
+
+	<h4>Categories</h4>
+	<div class="block_content">
+		<ul class="tree dhtml">
+											<li >
+	<a href="/demo/3-accessories-ipod"  title="Wonderful accessories for your iPod">Accessories</a>
+	</li>
+														<li >
+	<a href="/demo/2-music-ipods"  title="Now that you can buy movies from the iTunes Store and sync them to your iPod, the whole world is your theater.">iPods</a>
+
+	</li>
+														<li >
+	<a href="/demo/4-laptops"  title="The latest Intel processor, a bigger hard drive, plenty of memory, and even more new features all fit inside just one liberating inch. The new Mac laptops have the performance, power, and connectivity of a desktop computer. Without the desk part.">Laptops</a>
+	</li>
+														<li class="last">
+	<a href="/demo/5-test"  title="">TEST</a>
+	</li>
+					  </ul>
+
+	</div>	
+</div>
+<!-- /Block categories module --><!-- Block manufacturers module -->
+<div id="manufacturers_block_left" class="block blockmanufacturer">
+	<h4><a href="/demo/manufacturer.php" title="Manufacturers">Manufacturers</a></h4>
+	<div class="block_content">
+		<ul class="bullet">
+					<li class="first_item"><a href="/demo/3_ABC-Factory" title="More about ABC Factory">ABC Factory</a></li>
+							<li class="item"><a href="/demo/1_Apple" title="More about Apple">Apple</a></li>
+
+							<li class="last_item"><a href="/demo/2_Shure" title="More about Shure">Shure</a></li>
+				</ul>
+				<form action="/demo/index.php" method="get">
+			<p>
+				<select id="manufacturer_list" onclick="autoUrl('manufacturer_list', '');">
+					<option value="0">All manufacturers</option>
+									<option value="/demo/3_ABC-Factory">ABC Factory</option>
+
+									<option value="/demo/1_Apple">Apple</option>
+									<option value="/demo/2_Shure">Shure</option>
+						  </select>
+			</p>
+		</form>
+		</div>
+</div>
+<!-- /Block manufacturers module --><!-- Block informations module -->
+<div id="informations_block_left" class="block">
+
+	<h4>Information</h4>
+	<ul class="block_content">
+		<li><a href="/demo/delivery.php" title="">Delivery</a></li>
+		<li><a href="/demo/mentions.php" title="">Legal notice</a></li>
+		<li><a href="/demo/conditions.php" title="">Conditions</a></li>
+		<li><a href="/demo/about-us.php" title="">About us</a></li>
+
+	</ul>
+</div>
+<!-- /Block informations module --><!-- MODULE Block advertising -->
+<div class="advertising_block">
+	<a href="http://www.prestashop.com" title="Advertising"><img src="./modules/blockadvertising/advertising.jpg" alt="Advertising" /></a>
+</div>
+<!-- /MODULE Block advertising --><!-- Block payment logo module -->
+<div id="paiement_logo_block_left" class="paiement_logo_block">
+	<a href="/demo/secure-payment.php">
+		<img src="/demo/themes/prestashop/img/logo_paiement_visa.jpg" alt="visa" />
+		<img src="/demo/themes/prestashop/img/logo_paiement_mastercard.jpg" alt="mastercard" />
+		<img src="/demo/themes/prestashop/img/logo_paiement_paypal.jpg" alt="paypal" />
+
+	</a>
+</div>
+<!-- /Block payment logo module --><!-- Block links module -->
+<div id="links_block_left" class="block">
+	<h4>
+			
+		</h4>
+	<ul class="block_content bullet">
+			<li><a href="asdfasdf"></a></li>
+		</ul>
+</div>
+<!-- /Block links module -->
+
+
+	
+	</td>
+	
+	
+	
+	
+    <td valign="top" id="center_column">
+
+	
+	</td>
+    <td valign="top" id="right_column">
+	
+	
+<div id="cart_block" class="block exclusive">
+	<h4>
+		<a href="http://www.prestashop.com/demo/order.php">Cart</a>
+				<span id="block_cart_expand" >&nbsp;</span>
+		<span id="block_cart_collapse" class="hidden">&nbsp;</span>
+			</h4>
+	<div class="block_content">
+	<!-- block summary -->
+
+	<div id="cart_block_summary" class="expanded">
+		<span class="ajax_cart_quantity"></span>
+		<span class="ajax_cart_product_txt_s hidden">products</span>
+		<span class="ajax_cart_product_txt hidden">product</span>
+		<span class="ajax_cart_total"></span>
+		<span class="ajax_cart_no_product">(empty)</span>
+	</div>
+
+	<!-- block list of products -->
+	<div id="cart_block_list" class="collapsed">
+			<p  id="cart_block_no_products">No products</p>
+		
+				
+		<p id="cart-prices">
+			<span>Shipping</span>
+			<span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">0,00 &euro;</span>
+			<br/>
+
+						<span>Total</span>
+			<span id="cart_block_total" class="price ajax_block_cart_total">0,00 &euro;</span>
+		</p>
+		<p id="cart-buttons">
+			<a href="http://www.prestashop.com/demo/order.php" class="button_small" title="Cart">Cart</a>
+			<a href="http://www.prestashop.com/demo/order.php?step=1" id="button_order_cart" class="exclusive" title="Check out">Check out</a>
+		</p>
+
+	</div>
+	</div>
+</div>
+
+
+<!-- /MODULE Block cart --><!-- MODULE Block new products -->
+<div id="new-products_block_right" class="block products_block">
+	<h4><a href="/demo/new-products.php" title="New products">New products</a></h4>
+	<div class="block_content">
+			<ul class="product_images">
+			<li><a href="/demo/11-gu-gu-jiao-123456.html" title=""><img src="/demo/img/p/en-default-medium.jpg" alt="" /></a></li>
+			<li><a href="/demo/10-rrr-1542.html" title="Window Sticker"><img src="/demo/img/p/10-37-medium.jpg" alt="Window Sticker" /></a></li>
+
+		</ul>
+		<dl class="products">
+					<dt class="first_item"><a href="/demo/11-gu-gu-jiao-123456.html" title="Gu Gu Jiao">Gu Gu Jiao</a></dt>
+								<dt class="item"><a href="/demo/10-rrr-1542.html" title="Window Sticker">Window Sticker</a></dt>
+								<dt class="item"><a href="/demo/1-ipod-nano.html" title="iPod Nano">iPod Nano</a></dt>
+			<dd class="item"><a href="/demo/1-ipod-nano.html">A thinner design. Five stylish colors. A...</a>&nbsp;<a href="/demo/1-ipod-nano.html"><img alt=">>" src="/demo/themes/prestashop/img/bullet.gif"/></a></dd>					<dt class="item"><a href="/demo/2-ipod-shuffle.html" title="iPod shuffle">iPod shuffle</a></dt>
+
+			<dd class="item"><a href="/demo/2-ipod-shuffle.html">In five brilliant colors and just $79, the 1GB...</a>&nbsp;<a href="/demo/2-ipod-shuffle.html"><img alt=">>" src="/demo/themes/prestashop/img/bullet.gif"/></a></dd>					<dt class="last_item"><a href="/demo/5-macbook-air.html" title="MacBook Air">MacBook Air</a></dt>
+			<dd class="last_item"><a href="/demo/5-macbook-air.html">MacBook Air is ultrathin, ultraportable, and...</a>&nbsp;<a href="/demo/5-macbook-air.html"><img alt=">>" src="/demo/themes/prestashop/img/bullet.gif"/></a></dd>				</dl>
+		<p><a href="/demo/new-products.php" title="All new products" class="button_large">All new products</a></p>
+	</div>
+	</div>
+<!-- /MODULE Block new products --><!-- MODULE Block best sellers -->
+
+<div id="best-sellers_block_right" class="block products_block">
+	<h4><a href="/demo/best-sales.php">Top sellers</a></h4>
+	<div class="block_content">
+			<ul class="product_images">
+			<li><a href="/demo/1-ipod-nano.html" title="ipod-nano-alu"><img src="/demo/img/p/1-1-medium.jpg" alt="ipod-nano-alu" /></a></li>
+					</ul>
+		<dl>
+					<dt class="first_item"><a href="/demo/1-ipod-nano.html" title="iPod Nano">iPod Nano</a></dt>
+
+			<dd class="first_item">A thinner design. Five stylish colors. A...</dd>				</dl>
+		<p><a href="/demo/best-sales.php" title="All best sellers" class="button_large">All best sellers</a></p>
+		</div>
+</div>
+<!-- /MODULE Block best sellers --><!-- MODULE Block specials -->
+<div id="special_block_right" class="block products_block exclusive blockspecials">
+	<h4><a href="/demo/prices-drop.php" title="Specials">Specials</a></h4>
+	<div class="block_content">
+
+		<ul class="products">
+			<li class="product_image">
+				<a href="/demo/1-ipod-nano.html"><img src="/demo/img/p/1-1-medium.jpg" alt="ipod-nano-alu" title="iPod Nano" /></a>
+			</li>
+			<li>
+				<h5><a href="/demo/1-ipod-nano.html" title="iPod Nano">iPod Nano</a></h5>
+				<span class="price-discount">259,00 &euro;</span>
+				<span class="reduction">(-10%)</span>				<span class="price">233,10 &euro;</span>
+
+			</li>
+		</ul>
+		<p>
+			<a href="/demo/prices-drop.php" title="All specials" class="button">All specials</a>
+		</p>
+	</div>
+</div>
+	
 	</td>
   </tr>
-  <tr>
-    <td id="menuAreaId"><a href="javascript:mainInfoLoad('1.php');">1</a>|<a href="javascript:mainInfoLoad('index.htm');">1</a></td>
-  </tr>
-</thead>
-<tbody>  
-  <tr>
-    <td>
-	<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
-	<tbody>
-      <tr>
-        <td id="mainLeftInfoTD" width="25%" valign="top"></td>
-		<td width="1%"></td>
-        <td id="mainInfoTD" width="75%" valign="top">
-		
-		         2
+  </tbody>
+</table>
 
-		
-		
-		
-		</td>
-      </tr>
-	 </tbody> 
-    </table></td>
+	
+	
+	
+	
+	
+	</td>
   </tr>
-</tbody>
-<tfoot>  
+  </tbody>
+  <tfoot>
   <tr>
     <td>&nbsp;</td>
   </tr>
- </tfoot> 
+  </tfoot>
 </table>
-<script language="javascript">
- 
-mainLeftInfoAppand("user/userLogin.php");
-mainLeftInfoAppand("user/userRigister.php");
-
-mainLeftInfoAppand("1.php");
-loadProductMainAction();
- 
-</script>
- 
+</center>
 </body>
 </html>
+
