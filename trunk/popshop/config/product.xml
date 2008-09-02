@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="product" namespace="/product"
+		extends="struts-default">
+
+		<action name="categoriesListAction"
+			class="com.poprlz.product.web.CategoriesListAction">
+			<result name="success">/product/categoriesList.jsp</result>
+ 
+		</action>
+
+
+		
+		<!-- Add actions here -->
+	</package>
+</struts>

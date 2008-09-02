@@ -12,6 +12,8 @@
 	<!--constant name="guice.module" value="mypackage.MyModule"/-->
 
 	<include file="userManager.xml" />
+	<include file="product.xml" />
+	
 
 	<!-- Add packages here -->
 
