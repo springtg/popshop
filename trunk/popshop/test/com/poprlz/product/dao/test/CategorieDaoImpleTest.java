@@ -33,6 +33,18 @@ public class CategorieDaoImpleTest {
 		 
 		 
 	}
+	
+	@Test
+	public void testQueryEffectiveCategorie(){
+		List<Categorie> catList=dao.queryEffectiveCategorie();
+		
+		for(Iterator<Categorie> catIterator=catList.iterator();catIterator.hasNext();){
+			System.out.println(catIterator.next().getCategorieId());
+			//Assert.assertTrue(true);
+			
+		}
+	}
+	
 
 	@Test
 	public void testLoadEntity() {

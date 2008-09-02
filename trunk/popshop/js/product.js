@@ -1,16 +1,11 @@
 // JavaScript Document
 
-function loadProductMainAction(){
-	
+function categoriesListAction(){
 	try{
-			var url='product/productMain.php'
-			$.get(url, function(data){
-     			$('#mainInfoTD').append(data);
-				$("#tabsEx1 > ul").tabs();
-  		 } 
-	); 
+	
+	$("#categories_block_left").load("product/categoriesListAction.action");
 		
 	}catch(e){
-			alert(e);
+		alert(e);
 	}
 }
