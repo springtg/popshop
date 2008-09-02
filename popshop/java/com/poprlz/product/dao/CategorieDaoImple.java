@@ -31,4 +31,12 @@ public class CategorieDaoImple<Categorie> extends
 		return cat;
 	}
 
+	public List<Categorie> queryEffectiveCategorie() {
+		//stutas 设置为0 为有效 
+		Query query = this.sessionProvider.get().createQuery(
+		" from Categorie as categorie where categorie.stutas=0 ");
+
+		return query.list();
+	}
+
 }
