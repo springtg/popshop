@@ -57,7 +57,7 @@ public class ProductInfo implements Serializable {
 	private Date dateAvailable;
 	
 	@Column(name="weight",length=100)
-	private String weight;
+	private BigDecimal weight;
 	
 	@Column(name="URL")
 	private String URL;
@@ -225,11 +225,13 @@ public class ProductInfo implements Serializable {
 		this.dateAvailable = dateAvailable;
 	}
 
-	public String getWeight() {
+ 
+
+	public BigDecimal getWeight() {
 		return weight;
 	}
 
-	public void setWeight(String weight) {
+	public void setWeight(BigDecimal weight) {
 		this.weight = weight;
 	}
 

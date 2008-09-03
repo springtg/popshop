@@ -9,3 +9,16 @@ function categoriesListAction(){
 		alert(e);
 	}
 }
+
+
+
+
+function manufacturerListAction(){
+	try{
+	
+	$("#manufacturers_block_left").load("product/manufacturerListAction.action");
+		
+	}catch(e){
+		alert(e);
+	}
+}

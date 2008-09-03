@@ -62,5 +62,18 @@ public class ManufacturerDaoImpleTest {
 		manufacturer.setUrlClicked(1);
 		dao.saveAndLoadEntity(manufacturer);
 	}
+	
+	@Test
+	public void testGetEffectiveManufacturerList(){
+		
+		List<Manufacturer> manuList=dao.getEffectiveManufacturerList();
+		
+		for(Iterator<Manufacturer> manuIterator=manuList.iterator();manuIterator.hasNext();){
+			System.out.println(manuIterator.next().getManufacturerName());
+			//Assert.assertTrue(true);
+			
+		}
+		
+	}
 
 }
