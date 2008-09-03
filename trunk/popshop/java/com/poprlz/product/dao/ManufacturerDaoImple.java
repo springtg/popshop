@@ -32,4 +32,11 @@ public class ManufacturerDaoImple<Manufacturer> extends
 		return manufacturer;
 	}
 
+	public List<Manufacturer> getEffectiveManufacturerList() {
+		Query query = this.sessionProvider.get().createQuery(
+				" from Manufacturer as manufacturer ");
+
+		return query.list();
+	}
+
 }

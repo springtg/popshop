@@ -15,7 +15,11 @@
 		</action>
 
 
-		
+		<action name="manufacturerListAction"
+			class="com.poprlz.product.web.ManufacturerListAction">
+			<result name="success">/product/manufacturerList.jsp</result>
+ 
+		</action>		
 		<!-- Add actions here -->
 	</package>
 </struts>
