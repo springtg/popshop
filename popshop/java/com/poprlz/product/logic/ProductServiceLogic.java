@@ -6,6 +6,8 @@ import com.google.inject.Inject;
 import com.poprlz.product.dao.IProductInfoDao;
 import com.poprlz.product.entity.Categorie;
 import com.poprlz.product.entity.ProductInfo;
+import com.poprlz.product.web.ProductInfoView;
+import com.poprlz.util.PaginationSupport;
 
 public class ProductServiceLogic implements  IProductServiceLogic{
 
@@ -36,6 +38,13 @@ public class ProductServiceLogic implements  IProductServiceLogic{
 		if(productInfoList==null || productInfoList.size()<1)
 			throw new ServiceException("These is no Product Infomation");
 		return productInfoList;
+	}
+
+	public PaginationSupport<ProductInfoView> searchProductAction(
+			int currentPage, String productName, int manufacturerId,
+			int categorieId, int orderType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
