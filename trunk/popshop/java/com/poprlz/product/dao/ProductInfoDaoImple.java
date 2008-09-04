@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.dbutils.QueryRunner;
 import org.hibernate.Query;
 
+import com.google.inject.Inject;
 import com.poprlz.dao.HibernateGenericDao;
 
 public class ProductInfoDaoImple<ProductInfo> extends
 		HibernateGenericDao<ProductInfo> implements
 		IProductInfoDao<ProductInfo> {
+	
+	@Inject
+	private QueryRunner dbOperator;
 
 	 
 	public List<ProductInfo> queryEntity() {
@@ -86,5 +91,7 @@ public class ProductInfoDaoImple<ProductInfo> extends
 
 		return productInfoList;
 	}
+	
+	
 
 }

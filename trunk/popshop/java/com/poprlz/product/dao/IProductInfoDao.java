@@ -14,5 +14,7 @@ public interface IProductInfoDao<ProductInfo> extends IGenericDao<ProductInfo> {
 	public List<ProductInfo> getTopSellProducts();
 
 	public List<ProductInfo> getTopViewProducts();
+	
+	public int queryTotalCount(String querySql);
 
 }
