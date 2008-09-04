@@ -10,7 +10,6 @@ import com.poprlz.dao.HibernateGenericDao;
 public class CategorieDaoImple<Categorie> extends
 		HibernateGenericDao<Categorie> implements ICategorieDao<Categorie> {
 
-	@Override
 	public List<Categorie> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 				" from Categorie as categorie ");

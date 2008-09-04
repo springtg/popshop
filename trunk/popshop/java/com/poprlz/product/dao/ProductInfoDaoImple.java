@@ -12,7 +12,7 @@ public class ProductInfoDaoImple<ProductInfo> extends
 		HibernateGenericDao<ProductInfo> implements
 		IProductInfoDao<ProductInfo> {
 
-	@Override
+	 
 	public List<ProductInfo> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 				" from ProductInfo as productInfo ");
@@ -37,9 +37,9 @@ public class ProductInfoDaoImple<ProductInfo> extends
 		Query query = this.sessionProvider
 				.get()
 				.createQuery(
-						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<:currentDate and quantity>0 order by lastModified ");
+						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<Now() and quantity>0 order by lastModified ");
 
-		query.setDate("currentDate", new Date());
+		//query.setDate("currentDate", new Date());
 
 		query.setFirstResult(0);
 		query.setMaxResults(5);
@@ -55,9 +55,9 @@ public class ProductInfoDaoImple<ProductInfo> extends
 		Query query = this.sessionProvider
 				.get()
 				.createQuery(
-						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<:currentDate and quantity>0 order by ordered ");
+						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<Now() and quantity>0 order by ordered ");
 
-		query.setDate("currentDate", new Date());
+ 
 
 		query.setFirstResult(0);
 		query.setMaxResults(5);
@@ -73,9 +73,9 @@ public class ProductInfoDaoImple<ProductInfo> extends
 		Query query = this.sessionProvider
 				.get()
 				.createQuery(
-						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<:currentDate and quantity>0 order by viewed ");
+						"from  ProductInfo as productInfo where productInfo.stutas=0 and productInfo.dateAvailable<Now() and quantity>0 order by viewed ");
 
-		query.setDate("currentDate", new Date());
+		 
 
 		query.setFirstResult(0);
 		query.setMaxResults(5);

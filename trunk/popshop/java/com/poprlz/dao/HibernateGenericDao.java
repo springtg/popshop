@@ -19,7 +19,7 @@ public abstract  class HibernateGenericDao<T> implements IGenericDao<T>{
 		return entity;
 	}
 
-	public abstract List<T> queryEntity();
+ 
 
 	 
 	public boolean removeEntity(T entity) {

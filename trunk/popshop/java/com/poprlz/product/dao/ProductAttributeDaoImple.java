@@ -9,7 +9,7 @@ public class ProductAttributeDaoImple<ProductAttribute> extends
 		HibernateGenericDao<ProductAttribute> implements
 		IProductAttributeDao<ProductAttribute> {
 
-	@Override
+	 
 	public List<ProductAttribute> queryEntity() {
 		// TODO Auto-generated method stub
 		return null;

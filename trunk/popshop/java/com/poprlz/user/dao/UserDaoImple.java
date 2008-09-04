@@ -12,7 +12,7 @@ import com.poprlz.util.PaginationSupport;
 public class UserDaoImple<UserInfo> extends HibernateGenericDao<UserInfo>
 		implements IUserDao<UserInfo> {
 
-	@Override
+	 
 	public List<UserInfo> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 				" from UserInfo as userInfo ");

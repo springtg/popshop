@@ -8,7 +8,7 @@ import com.poprlz.dao.HibernateGenericDao;
 public class OrderProductItemDaoImple<OrderProductItem> extends HibernateGenericDao<OrderProductItem> implements
 		IOrderProductItemDao<OrderProductItem> {
 
-	@Override
+	 
 	public List<OrderProductItem> queryEntity() {
 		// TODO Auto-generated method stub
 		return null;

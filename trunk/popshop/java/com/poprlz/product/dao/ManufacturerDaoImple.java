@@ -11,7 +11,7 @@ public class ManufacturerDaoImple<Manufacturer> extends
 		HibernateGenericDao<Manufacturer> implements
 		IManufacturerDao<Manufacturer> {
 
-	@Override
+	 
 	public List<Manufacturer> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 				" from Manufacturer as manufacturer ");
