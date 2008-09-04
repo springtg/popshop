@@ -10,7 +10,7 @@ import com.poprlz.util.PaginationSupport;
 
 public class GroupDaoImple<Group> extends HibernateGenericDao<Group> implements
 		IGroupDao<Group> {
-	@Override
+	 
 	public List<Group> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 				" from Group as group ");

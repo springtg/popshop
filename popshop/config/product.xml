@@ -20,6 +20,25 @@
 			<result name="success">/product/manufacturerList.jsp</result>
  
 		</action>		
+		
+		<action name="newProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getNewProducts">
+			<result name="success">/product/newProductsList.jsp</result>
+ 
+		</action>	
+ 		
+ 		<action name="topSellProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getTopSellProducts">
+			<result name="success">/product/topSellProductsList.jsp</result>
+ 
+		</action>	
+		
+		
+		<action name="topViewProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getTopViewProducts">
+			<result name="success">/product/topViewProductsList.jsp</result>
+ 
+		</action>	
 		<!-- Add actions here -->
 	</package>
 </struts>

@@ -10,7 +10,7 @@ import com.poprlz.dao.HibernateGenericDao;
 public class PermissionDaoImple<Permision> extends HibernateGenericDao<Permision>
 		implements IPermissionDao<Permision> {
 
-	@Override
+ 
 	public List<Permision> queryEntity() {
 		Query query = this.sessionProvider.get().createQuery(
 		" from Permision as permision ");
