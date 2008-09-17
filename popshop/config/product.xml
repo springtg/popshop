@@ -39,6 +39,13 @@
 			<result name="success">/product/topViewProductsList.jsp</result>
  
 		</action>	
+		
+		
+		<action name="productInfoLoadAction"
+			class="com.poprlz.product.web.ProductInfoLoadAction">
+			<result name="success">/product/productInfo.jsp</result>
+ 
+		</action>	
 		<!-- Add actions here -->
 	</package>
 </struts>

@@ -3,6 +3,7 @@ package com.poprlz.product.logic;
 import java.util.List;
 
 import com.google.inject.ImplementedBy;
+import com.poprlz.product.dao.ProductQueryCondition;
 import com.poprlz.product.entity.ProductInfo;
 import com.poprlz.product.web.ProductInfoView;
 import com.poprlz.util.PaginationSupport;
@@ -17,8 +18,10 @@ public interface IProductServiceLogic {
 
 	public List<ProductInfo> getTopViewProducts()  throws ServiceException;
 
+ 
 	public PaginationSupport<ProductInfoView> searchProductAction(
-			int currentPage, String productName, int manufacturerId,
-			int categorieId, int orderType);
+			ProductQueryCondition queryConditon);
+
+	public ProductInfo loadProductInfoLogic(Integer productId);
 
 }

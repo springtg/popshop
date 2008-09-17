@@ -1,7 +1,7 @@
 <%@ page contentType="text/xml; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!-- Block categories module -->
-<center>
+<span>
  
  <h4><a href="/demo/manufacturer.php" title="Manufacturers">Manufacturers</a></h4>
 	<div class="block_content">
@@ -26,4 +26,4 @@
 			</p>
 		</form>
 		</div>
-</center>		
+</span>		
