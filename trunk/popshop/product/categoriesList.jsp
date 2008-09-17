@@ -1,7 +1,7 @@
 <%@ page contentType="text/xml; charset=UTF-8" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!-- Block categories module -->
-<center>
+<span>
  
 
 	<h4>Categories</h4>
@@ -19,7 +19,7 @@
 	</ul>				   
 
 	</div>	
-</center>
+</span>
 <!-- /Block categories module -->
 
  

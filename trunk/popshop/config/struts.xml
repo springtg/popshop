@@ -14,6 +14,18 @@
 	<include file="userManager.xml" />
 	<include file="product.xml" />
 	
+	<package name="main" extends="struts-default">
+
+		 
+		
+		
+		<action name="index"
+			class="com.poprlz.product.web.ProductIndexAction">
+			<result name="success">index.jsp</result>
+ 
+		</action>	
+	</package>
+	
 
 	<!-- Add packages here -->
 

@@ -1,14 +1,19 @@
 package com.poprlz.product.dao;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
 import com.google.inject.Inject;
 import com.poprlz.dao.HibernateGenericDao;
+import com.poprlz.product.web.ProductInfoView;
 
 public class ProductInfoDaoImple<ProductInfo> extends
 		HibernateGenericDao<ProductInfo> implements
@@ -91,6 +96,56 @@ public class ProductInfoDaoImple<ProductInfo> extends
 
 		return productInfoList;
 	}
+
+	public int queryTotalCount(String querySql) {
+		try {
+			Integer data=(Integer)dbOperator.query(sessionProvider.get().connection(), querySql, null, new ResultSetHandler(){
+
+				public Object handle(ResultSet rs) throws SQLException {
+					Integer result=null;
+					 if(rs.next())
+						 result=new Integer(rs.getInt(1));
+						 
+					return result;
+				}
+				
+			});
+			
+			return data.intValue();
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public List<ProductInfoView> queryProductViewList(String querySql) {
+		try {
+			List<ProductInfoView> productInfoViewList=(List<ProductInfoView>)dbOperator.query(sessionProvider.get().connection(), querySql, null, new ProductInfoViewResultSetHandler());
+			
+			return productInfoViewList;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
+	 * SELECT * FROM productinfo prd LEFT JOIN ( SELECT * FROM productImage WHERE imageId IN (
+SELECT DISTINCT MIN( imageId ) FROM productImage GROUP BY productId
+
+)) prdImg ON (prd.productId=prdImg.productId)
+
+WHERE prd.stutas=0 AND prd.dateAvailable<NOW() AND prd.quantity>0 AND prd.price BETWEEN ? AND ? AND prd.manufacturerId=?
+AND prd.productId IN (SELECT productId FROM cat_product WHERE categorield=?) LIMIT ?,?
+	 */
 	
 	
 

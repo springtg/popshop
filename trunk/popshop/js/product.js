@@ -22,3 +22,15 @@ function manufacturerListAction(){
 		alert(e);
 	}
 }
+
+function productInfoLoadAction(productId){
+	try{
+	
+	var url="product/productInfoLoadAction.action?productId="+productId;
+	$("#center_column").load(url);
+		
+	}catch(e){
+		alert(e);
+	}
+}
+
