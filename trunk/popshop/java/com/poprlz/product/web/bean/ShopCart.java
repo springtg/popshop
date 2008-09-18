@@ -23,7 +23,7 @@ public class ShopCart implements Serializable {
 	
 	private BigDecimal totalPrice;
 
-	private List<ShopCartProductItem> productItemInfo;
+	private List<ShopCartProductItem> productItemInfoList;
 
 	public String getSessionId() {
 		return sessionId;
@@ -59,13 +59,7 @@ public class ShopCart implements Serializable {
 		this.clientIP = clientIP;
 	}
 
-	public List<ShopCartProductItem> getProductItemInfo() {
-		return productItemInfo;
-	}
-
-	public void setProductItemInfo(List<ShopCartProductItem> productItemInfo) {
-		this.productItemInfo = productItemInfo;
-	}
+ 
 
 	public Integer getUserInfoId() {
 		return userInfoId;
@@ -101,8 +95,7 @@ public class ShopCart implements Serializable {
 				+ ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result
 				+ ((lastAcessDate == null) ? 0 : lastAcessDate.hashCode());
-		result = prime * result
-				+ ((productItemInfo == null) ? 0 : productItemInfo.hashCode());
+	 
 		result = prime * result
 				+ ((sessionId == null) ? 0 : sessionId.hashCode());
 		result = prime * result
@@ -138,11 +131,7 @@ public class ShopCart implements Serializable {
 				return false;
 		} else if (!lastAcessDate.equals(other.lastAcessDate))
 			return false;
-		if (productItemInfo == null) {
-			if (other.productItemInfo != null)
-				return false;
-		} else if (!productItemInfo.equals(other.productItemInfo))
-			return false;
+		 
 		if (sessionId == null) {
 			if (other.sessionId != null)
 				return false;
@@ -164,6 +153,14 @@ public class ShopCart implements Serializable {
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
+	}
+
+	public List<ShopCartProductItem> getProductItemInfoList() {
+		return productItemInfoList;
+	}
+
+	public void setProductItemInfoList(List<ShopCartProductItem> productItemInfoList) {
+		this.productItemInfoList = productItemInfoList;
 	}
 
 	 
