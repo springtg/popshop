@@ -94,9 +94,16 @@ public class ShopCartServiceLogic implements IShopCartServiceLogic {
 		}
 
 		shopCart.setTotalPrice(totalPrice);
-
-		shopCartDao.saveAndLoadEntity(shopCart);
-		return this.loadShopCartInfo(shopCart.getSessionId());
+		
+		if(null==shopCartDao.loadEntity(shopCart.getSessionId()))
+			shopCart=shopCartDao.saveAndLoadEntity(shopCart);
+		else
+			shopCart=shopCartDao.modifyEntity(shopCart);
+		
+		shopCart.setProductItemInfoList(productItemList);
+		
+		return shopCart;
+		 
 	}
 
 }

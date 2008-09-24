@@ -46,6 +46,19 @@
 			<result name="success">/product/productInfo.jsp</result>
  
 		</action>	
+		
+		 <action name="saveProductItemAction"
+			class="com.poprlz.product.web.ShopCartInfoManagerAction" method="saveProductItem">
+			<result name="success">/product/shopCartInfo.jsp</result>
+ 
+		</action>	
+		
+				
+		<action name="shopCartInfoLoadAction"
+			class="com.poprlz.product.web.ShopCartInfoManagerAction" method="shopCartInfoLoad">
+			<result name="success">/product/shopCartInfo.jsp</result>
+ 
+		</action>
 		<!-- Add actions here -->
 	</package>
 </struts>
