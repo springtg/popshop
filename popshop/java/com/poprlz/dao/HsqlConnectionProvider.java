@@ -9,7 +9,7 @@ public class HsqlConnectionProvider<Conection> implements Provider<Conection> {
 	public Conection get() {
 		// TODO Auto-generated method stub
 		try {
-			return (Conection) HsqlDBTool.getInstance().getConnection();
+			return (Conection) HsqlDBTool.getConnection();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,27 +5,19 @@ import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
+ 
+
 import com.mchange.v2.c3p0.DataSources;
 
 public class HsqlDBTool {
 
 	private static HsqlDBTool hsqlDBTool = null;
 
-	public synchronized static HsqlDBTool getInstance() {
- 		if (hsqlDBTool == null)
-			hsqlDBTool = new HsqlDBTool();
-		
-		return hsqlDBTool;
+	public static final ThreadLocal<Connection> threadConnection = new ThreadLocal<Connection>();
+ 
+	private static DataSource dataSource;
 
-	}
-
-	private HsqlDBTool() {
-		this.initHsqlDataSource();
-	}
-
-	private DataSource dataSource;
-
-	public void initHsqlDataSource() {
+	public static void initHsqlDataSource() {
 
 		try {
 			String dataPath=HsqlDBTool.class.getResource("/").getPath()+"databases/webshop";
@@ -53,17 +45,43 @@ public class HsqlDBTool {
 
 	}
 
-	public Connection getConnection() throws SQLException {
-		final Connection c = dataSource.getConnection();
+	public static  Connection getConnection() throws SQLException {
+		 Connection c =threadConnection.get();
+		 if(c==null){
+			 if(dataSource==null)
+				 initHsqlDataSource();
+				 
+			 c = dataSource.getConnection();
+			 threadConnection.set(c);
+		 }
 
 		return c;
 	}
+	
+	public static  boolean closeConnection(){
+		
+		 Connection conn =threadConnection.get();
+		 if(conn!=null){
+			 try {
+				closeConnection(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 
+		 threadConnection.set(null);
+		 
+		 return true;
+			 
+		
+	}
 
-	public void closeConnection(Connection conn) throws SQLException {
+	public static  void closeConnection(Connection conn) throws SQLException {
 		conn.close();
 	}
 
-	public void close() {
+	public static  void close() {
 		try {
 			DataSources.destroy(dataSource);
 		} catch (SQLException sqle) {

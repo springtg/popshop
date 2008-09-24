@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.poprlz.dao.HsqlDBTool;
 import com.poprlz.util.HibernateUtil;
 
 public class HibernateSessionFilter implements Filter {
@@ -27,11 +28,13 @@ public class HibernateSessionFilter implements Filter {
 		try{
 			log.info("Hibernate Session is created!");	 
 		HibernateUtil.currentSession();
+		HsqlDBTool.getConnection();
 		chain.doFilter(req, rsp);
 		}catch(Exception e){
 			
 		}finally{
 			HibernateUtil.closeSession();
+			HsqlDBTool.closeConnection();
 			log.info("Hibernate Session is closed!");	 
 		}
 		 
