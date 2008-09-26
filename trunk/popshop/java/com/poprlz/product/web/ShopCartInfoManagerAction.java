@@ -55,7 +55,7 @@ public class ShopCartInfoManagerAction extends ActionSupport {
 		
 		ShopCartProductItem shopCartProductItem= createShopCartProductItem(sessionId);
 		
-		shopCartServiceLogic.saveProductItem(shopCart,shopCartProductItem);
+		shopCartInfo=shopCartServiceLogic.saveProductItem(shopCart,shopCartProductItem);
 		return SUCCESS;
 		
 		

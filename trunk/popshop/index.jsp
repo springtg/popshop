@@ -29,6 +29,7 @@
 	<a href="javascript:centerColumnLoadInfo('Shipping.php')" title="login.php" class="button">Shipping</a>
 	<a href="javascript:categoriesListAction()" title="login.php" class="button">catList</a>
 	<a href="javascript:manufacturerListAction()" title="login.php" class="button">manufacturerListAction</a>
+		 
 	 </td>
   </tr>
  </thead>
@@ -165,7 +166,7 @@
 					<p>
 						<span class="price">$ <s:property value="price"/></span>
 						<a class="button" href="javascript:productInfoLoadAction(<s:property value="productId"/>);" title="View">View</a>
-												<a class="exclusive ajax_add_to_cart_button" rel="ajax_id_product_2" href="#<s:property value="productId"/>" title="Add to cart">Add to cart</a>
+												<a class="exclusive ajax_add_to_cart_button" rel="ajax_id_product_2" href="javascript:saveProductItemAction(<s:property value="productId"/>,1);" title="Add to cart">Add to cart</a>
 											</p>
 					 
 	 </li>
@@ -181,48 +182,85 @@
 	</td>
     <td valign="top" id="right_column">
 	
-	
-<div id="cart_block" class="block exclusive">
-	<h4>
-		<a href="http://www.prestashop.com/demo/order.php">Cart</a>
-				<span id="block_cart_expand" >&nbsp;</span>
-		<span id="block_cart_collapse" class="hidden">&nbsp;</span>
+<div class="block exclusive" id="cart_block">
+	 <h4>
+		<a href="http://127.0.0.1:8083/prestashop/order.php">Cart</a>
+				<span class="hidden" id="block_cart_expand"> </span>
+		<span id="block_cart_collapse"> </span>
 			</h4>
-	<div class="block_content">
-	<!-- block summary -->
-
-	<div id="cart_block_summary" class="expanded">
-		<span class="ajax_cart_quantity"></span>
+<div class="block_content" id="cart_block_content">	
+	 
+	<!-- block summary -->		
+ 		
+	
+	<div class="collapsed" id="cart_block_summary">
+		<span class="ajax_cart_quantity"/>
 		<span class="ajax_cart_product_txt_s hidden">products</span>
 		<span class="ajax_cart_product_txt hidden">product</span>
-		<span class="ajax_cart_total"></span>
+		<span class="ajax_cart_total"/>
 		<span class="ajax_cart_no_product">(empty)</span>
 	</div>
-
+ 	
 	<!-- block list of products -->
-	<div id="cart_block_list" class="collapsed">
-			<p  id="cart_block_no_products">No products</p>
+	<div class="expanded" id="cart_block_list">
+<c:choose>
+<c:when test="${not empty shopCartInfo.productItemInfoList}">
+	
+			<dl class="products">
+						
+<c:forEach items="${shopCartInfo.productItemInfoList}" var="shopCartProductItem">	 
+	 
+								<dt class="item" id="cart_block_product_7_19">
+				<span class="quantity-formated"><span class="quantity"><c:out value="${shopCartProductItem.orderQuantity}"/></span>x</span>
+				<a title="iPod touch" href="javascript:productInfoLoadAction(<c:out value="${shopCartProductItem.productId}"/>);" class="cart_block_product_name"><c:out value="${shopCartProductItem.productName}"/></a>
+				<a title="remove this product from my cart" href="javascript:saveProductItemAction(<c:out value="${shopCartProductItem.productId}"/>,-<c:out value="${shopCartProductItem.orderQuantity}"/>);" class="ajax_cart_block_remove_link"> </a>
+				<span class="price">$ <c:out value="${shopCartProductItem.orderQuantity*shopCartProductItem.price}"/></span>
+			</dt>
+						<dd class="last_item" id="cart_block_combination_of_7_19">
+				<a title="Product detail" href="javascript:productInfoLoadAction(<c:out value="${shopCartProductItem.productId}"/>);">8Go</a>
+			</dd>
+</c:forEach>							
+		</dl>
+</c:when>		
+<c:otherwise>
 		
+			<p id="cart_block_no_products" class="hidden">No products</p>
+</c:otherwise>			
+</c:choose>
+
+<c:choose>
+<c:when test="${not empty shopCartInfo.productItemInfoList}">		
 				
 		<p id="cart-prices">
 			<span>Shipping</span>
-			<span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">0,00 &euro;</span>
+			<span class="price ajax_cart_shipping_cost" id="cart_block_shipping_cost">$ 11.73</span>
 			<br/>
-
 						<span>Total</span>
-			<span id="cart_block_total" class="price ajax_block_cart_total">0,00 &euro;</span>
+			<span class="price ajax_block_cart_total" id="cart_block_total"><c:out value="${shopCartInfo.totalPrice}"/></span>
 		</p>
+</c:when>		
+<c:otherwise>	
+		<p id="cart-prices">
+			<span>Shipping</span>
+			<span class="price ajax_cart_shipping_cost" id="cart_block_shipping_cost">$ 0.00</span>
+			<br/>
+						<span>Total</span>
+			<span class="price ajax_block_cart_total" id="cart_block_total">$ 0.00</span>
+		</p>	
+</c:otherwise>			
+</c:choose>		
 		<p id="cart-buttons">
-			<a href="http://www.prestashop.com/demo/order.php" class="button_small" title="Cart">Cart</a>
-			<a href="http://www.prestashop.com/demo/order.php?step=1" id="button_order_cart" class="exclusive" title="Check out">Check out</a>
+			<a title="Cart" class="button_small" href="javascript:shopCartInfoLoadAction();">Cart</a>
+			<a title="Check out" class="exclusive" id="button_order_cart" href="http://127.0.0.1:8083/prestashop/order.php?step=1">Check out</a>
 		</p>
-
 	</div>
-	</div>
+ </div>
 </div>
 
 
-<!-- /MODULE Block cart --><!-- MODULE Block new products -->
+<!-- /MODULE Block cart -->
+
+<!-- MODULE Block new products -->
 <div id="new-products_block_right" class="block products_block">
 	<h4><a href="/demo/new-products.php" title="New products">New products</a></h4>
 	<div class="block_content">
