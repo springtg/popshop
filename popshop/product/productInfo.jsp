@@ -118,7 +118,7 @@
 
 			<p style="display: none;" id="last_quantities" class="warning-inline">Warning: Last items in stock!</p>
 
-			<p class="buttons_bottom_block" id="add_to_cart"><input type="submit" class="exclusive" value="Add to cart" name="Submit"/></p>
+			<p class="buttons_bottom_block" id="add_to_cart"><input type="button" onclick="saveProductItemAction(<c:out value="${productInfo.productId}"/>,1)"  class="exclusive" value="Add to cart" name="Submit"/></p>
 		</form>
 
 		<!-- usefull links-->
@@ -149,7 +149,7 @@
 				</c:forEach>
 					
 		</ul>
-		<ulclass="sheets" id="idTab3">
+		<ul class="sheets" id="idTab3">
 					<c:forEach items="${productInfo.productAttributeList}" var="productAttribute">	 
 					<li><span><c:out value="${productAttribute.name}"/> </span>:<c:out value="${productAttribute.value}"/> </li>
 				</c:forEach>

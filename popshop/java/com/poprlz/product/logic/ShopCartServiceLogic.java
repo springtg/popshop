@@ -82,13 +82,14 @@ public class ShopCartServiceLogic implements IShopCartServiceLogic {
 		List<ShopCartProductItem> productItemList = shopCartProductItemDao
 				.queryEntityBySessionId(shopCart.getSessionId());
 		BigDecimal totalPrice = new BigDecimal(0);
+		BigDecimal itemTotalPrice=null;
 		if (productItemList != null) {
 			ShopCartProductItem item = null;
 			for (Iterator<ShopCartProductItem> iterator = productItemList
 					.iterator(); iterator.hasNext();) {
 				item = iterator.next();
-				totalPrice.add(item.getPrice().multiply(
-						new BigDecimal(item.getOrderQuantity())));
+				itemTotalPrice=item.getPrice().multiply(new BigDecimal(item.getOrderQuantity()));
+				totalPrice=totalPrice.add(itemTotalPrice);
 
 			}
 		}

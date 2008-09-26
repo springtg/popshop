@@ -56,7 +56,7 @@
 				
 		<action name="shopCartInfoLoadAction"
 			class="com.poprlz.product.web.ShopCartInfoManagerAction" method="shopCartInfoLoad">
-			<result name="success">/product/shopCartInfo.jsp</result>
+			<result name="success">/product/shopCartInfoManager.jsp</result>
  
 		</action>
 		<!-- Add actions here -->

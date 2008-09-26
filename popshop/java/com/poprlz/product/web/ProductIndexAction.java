@@ -2,6 +2,11 @@ package com.poprlz.product.web;
 	
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.google.inject.Inject;
 import com.opensymphony.xwork2.ActionSupport;
 import com.poprlz.product.dao.ProductQueryCondition;
@@ -10,6 +15,8 @@ import com.poprlz.product.entity.Manufacturer;
 import com.poprlz.product.logic.ICategorieServiceLogic;
 import com.poprlz.product.logic.IManufacturerServiceLogic;
 import com.poprlz.product.logic.IProductServiceLogic;
+import com.poprlz.product.logic.IShopCartServiceLogic;
+import com.poprlz.product.web.bean.ShopCart;
 import com.poprlz.util.PaginationSupport;
 
 
@@ -24,6 +31,9 @@ public class ProductIndexAction  extends ActionSupport {
 	@Inject
 	private IManufacturerServiceLogic manufacturerServiceLogic;
 	
+	
+	@Inject
+	private IShopCartServiceLogic shopCartServiceLogic; 
 	
 	public List<Manufacturer> getManufacturerList() {
 		return manufacturerList;
@@ -68,8 +78,15 @@ public class ProductIndexAction  extends ActionSupport {
 	private PaginationSupport<ProductInfoView> topSaleProductInfoViewList;
 	
 	private PaginationSupport<ProductInfoView> lastedProductInfoViewList;
+
+	private ShopCart shopCartInfo;
 	 
 	
+	public ShopCart getShopCartInfo() {
+		return shopCartInfo;
+	}
+
+
 	public String execute() throws Exception {
 		
 		//取得商品类别
@@ -92,6 +109,15 @@ public class ProductIndexAction  extends ActionSupport {
 		queryConditon.setOrderType(ProductQueryCondition.OrderType_Ordered);
 		topSaleProductInfoViewList=productServiceLogic.searchProductAction(queryConditon);
 		 
+		
+		HttpServletRequest request = ServletActionContext.getRequest(); 		
+		HttpSession httpSession= request.getSession(true);
+		
+		//取得购物车信息
+		String sessionId=httpSession.getId();
+		shopCartInfo=shopCartServiceLogic.loadShopCartInfo(sessionId);
+		
+		
 		return SUCCESS;
 	}
 
