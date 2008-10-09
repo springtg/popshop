@@ -66,3 +66,23 @@ function shopCartInfoLoadAction(){
 		alert(e);
 	}
 }
+
+function productSearchAction(currentPage,productName,manufacturerId,categorieIds,orderType,minDecimal,maxDecimal){
+	
+	try{
+		 var queryData="currentPage="+currentPage+"&productName="+productName+"&manufacturerId="+manufacturerId+"&categorieIds="+categorieIds,
+		 queryData=queryData+"&orderType="+orderType+"&minDecimal="+minDecimal+"&maxDecimal="+maxDecimal;
+		 
+		 
+		 alert(queryData);
+		 
+		 
+				
+			 $("#center_column").load("product/productSearchAction.action", queryData); 								
+			 								 
+	 
+	 
+	}catch(e){
+	}
+
+}

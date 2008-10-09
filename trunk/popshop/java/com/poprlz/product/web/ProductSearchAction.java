@@ -19,6 +19,60 @@ public class ProductSearchAction  extends ActionSupport {
 	
 	private int currentPage;
 	
+	public IProductServiceLogic getProductServiceLogic() {
+		return productServiceLogic;
+	}
+
+
+
+	public PaginationSupport<ProductInfoView> getProductInfoViewList() {
+		return productInfoViewList;
+	}
+
+
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+
+	public int getManufacturerId() {
+		return manufacturerId;
+	}
+
+
+
+	public int[] getCategorieIds() {
+		return categorieIds;
+	}
+
+
+
+	public int getOrderType() {
+		return orderType;
+	}
+
+
+
+	public BigDecimal getMinDecimal() {
+		return minDecimal;
+	}
+
+
+
+	public BigDecimal getMaxDecimal() {
+		return maxDecimal;
+	}
+
+
+
 	private String productName;
 	
 	private int manufacturerId;
@@ -31,6 +85,63 @@ public class ProductSearchAction  extends ActionSupport {
 	
 	private BigDecimal maxDecimal;
 	
+	
+	
+	public void setProductServiceLogic(IProductServiceLogic productServiceLogic) {
+		this.productServiceLogic = productServiceLogic;
+	}
+
+
+
+	public void setProductInfoViewList(
+			PaginationSupport<ProductInfoView> productInfoViewList) {
+		this.productInfoViewList = productInfoViewList;
+	}
+
+
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+
+
+	public void setManufacturerId(int manufacturerId) {
+		this.manufacturerId = manufacturerId;
+	}
+
+
+
+	public void setCategorieIds(int[] categorieIds) {
+		this.categorieIds = categorieIds;
+	}
+
+
+
+	public void setOrderType(int orderType) {
+		this.orderType = orderType;
+	}
+
+
+
+	public void setMinDecimal(BigDecimal minDecimal) {
+		this.minDecimal = minDecimal;
+	}
+
+
+
+	public void setMaxDecimal(BigDecimal maxDecimal) {
+		this.maxDecimal = maxDecimal;
+	}
+
+
+
 	public String execute() throws Exception {
 		ProductQueryCondition queryConditon=new ProductQueryCondition();
 		queryConditon.setCategorieIds(categorieIds);

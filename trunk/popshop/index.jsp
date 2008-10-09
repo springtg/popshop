@@ -84,7 +84,7 @@
 						
 <c:forEach items="${manufacturerList}" var="manufacturer" begin="0" end="2">
          <li>
-			<a href="javascript:searchProductInfo(${manufacturer.manufacturerId})"  title="${manufacturer.information}">${manufacturer.manufacturerName}</a>
+			<a href="javascript:productSearchAction(0,'',${manufacturer.manufacturerId})"  title="${manufacturer.information}">${manufacturer.manufacturerName}</a>
 	 </li>
  </c:forEach>
  
