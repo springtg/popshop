@@ -10,23 +10,24 @@
 <ul id="order_step" class="step">
 	<li class="step_current">
 				Summary
-			</li>
+	</li>
 	<li class="step_todo">
 				Login
-			</li>
+	</li>
 	<li class="step_todo">
 				Address
-			</li>
+	</li>
 	<li class="step_todo">
 				Shipping
-			</li>
+	</li>
 	<li class="step_todo" id="step_end">
-		Payment
+				Payment
 	</li>
 </ul>
 <!-- /Steps -->
 
-
+<c:choose>
+<c:when test="${not empty shopCartInfo.productItemInfoList}">
 <p>
 	Your shopping cart contains 4 products</p>
 <div class="table_block" id="order-detail-content">
@@ -42,20 +43,7 @@
 				<th class="cart_total last_item">Total</th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr class="cart_total_product">
-				<td colspan="6">Total products:</td>
-				<td class="price">$ 2,941.62</td>
-			</tr>
-												<tr class="cart_total_delivery">
-				<td colspan="6">Total shipping:</td>
-				<td class="price">$ 11.73</td>
-			</tr>
-						<tr class="cart_total_price">
-				<td colspan="6">Total:</td>
-				<td class="price">$ 2,953.35</td>
-			</tr>
-		</tfoot>
+
 		<tbody>
 					<tr class="first_item item cart_item">
 				<td class="cart_product">
@@ -138,6 +126,21 @@
 				<td class="cart_total"><span class="price">$ 424.83</span></td>
 			</tr>
 				</tbody>
+				
+						<tfoot>
+			<tr class="cart_total_product">
+				<td colspan="6">Total products:</td>
+				<td class="price">$ 2,941.62</td>
+			</tr>
+												<tr class="cart_total_delivery">
+				<td colspan="6">Total shipping:</td>
+				<td class="price">$ 11.73</td>
+			</tr>
+						<tr class="cart_total_price">
+				<td colspan="6">Total:</td>
+				<td class="price">$ 2,953.35</td>
+			</tr>
+		</tfoot>
 		</table>
 </div>
 
@@ -146,7 +149,11 @@
 	<a title="Next" class="exclusive" href="/prestashop/order.php?step=1">Next »</a>
 	<a title="Continue shopping" class="button_large" href="http://127.0.0.1:8083/prestashop/order.php">« Continue shopping</a>
 </p>
- 
+</c:when>		
+<c:otherwise>
+
+</c:otherwise>			
+</c:choose>	 
 
 
 </center>
