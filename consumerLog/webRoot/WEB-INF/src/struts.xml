@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.objectFactory" value="guice" />
+	<!--constant name="guice.module" value="mypackage.MyModule"/-->
+
+	<include file="userManager.xml" />
+	<include file="product.xml" />
+	
+	<package name="main" extends="struts-default">
+
+		 
+		
+		
+		<action name="index"
+			class="com.poprlz.product.web.ProductIndexAction">
+			<result name="success">index.jsp</result>
+ 
+		</action>	
+	</package>
+	
+
+	<!-- Add packages here -->
+
+</struts>

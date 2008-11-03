@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="product" namespace="/product"
+		extends="struts-default">
+
+		<action name="categoriesListAction"
+			class="com.poprlz.product.web.CategoriesListAction">
+			<result name="success">/product/categoriesList.jsp</result>
+ 
+		</action>
+
+
+		<action name="manufacturerListAction"
+			class="com.poprlz.product.web.ManufacturerListAction">
+			<result name="success">/product/manufacturerList.jsp</result>
+ 
+		</action>		
+		
+		<action name="newProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getNewProducts">
+			<result name="success">/product/newProductsList.jsp</result>
+ 
+		</action>	
+ 		
+ 		<action name="topSellProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getTopSellProducts">
+			<result name="success">/product/topSellProductsList.jsp</result>
+ 
+		</action>	
+		
+		
+		<action name="topViewProductsListAction"
+			class="com.poprlz.product.web.ProductListAction" method="getTopViewProducts">
+			<result name="success">/product/topViewProductsList.jsp</result>
+ 
+		</action>	
+		
+		
+		<action name="productInfoLoadAction"
+			class="com.poprlz.product.web.ProductInfoLoadAction">
+			<result name="success">/product/productInfo.jsp</result>
+ 
+		</action>	
+		
+		 <action name="saveProductItemAction"
+			class="com.poprlz.product.web.ShopCartInfoManagerAction" method="saveProductItem">
+			<result name="success">/product/shopCartInfo.jsp</result>
+ 
+		</action>	
+		
+				
+		<action name="shopCartInfoLoadAction"
+			class="com.poprlz.product.web.ShopCartInfoManagerAction" method="shopCartInfoLoad">
+			<result name="success">/product/shopCartInfoManager.jsp</result> 
+		</action>
+				
+		<action name="productSearchAction"
+			class="com.poprlz.product.web.ProductSearchAction">
+			<result name="success">/product/productList.jsp</result> 
+		</action>		
+		<!-- Add actions here -->
+	</package>
+</struts>
