@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="userInfo" namespace="/userInfo"
+		extends="struts-default">
+
+		<action name="loginAction"
+			class="com.poprlz.user.web.LoginAction">
+			<result name="success">/userInfo/HelloWorld.jsp</result>
+			<result name="input">/userInfo/login.jsp</result>
+		</action>
+
+
+		<action name="registUserInfoAction"
+			class="com.poprlz.user.web.UserInfoManagerAction"
+			method="registUserInfo">
+			<result name="success" type="chain">
+				queryUserInfoAction
+			</result>
+			<result name="input">/userInfo/userInfoEdit.jsp</result>
+		</action>
+
+		<action name="modifyUserInfoAction"
+			class="com.poprlz.user.web.UserInfoManagerAction"
+			method="modifyUserInfo">
+			<result name="success" type="chain">
+				queryUserInfoAction
+			</result>
+			<result name="input">/userInfo/userInfoEdit.jsp</result>
+		</action>
+
+
+
+		<action name="queryUserInfoAction"
+			class="com.poprlz.user.web.UserInfoQueryAction"
+			method="queryUserInfo">
+			<result name="success">/userInfo/userInfoQuery.jsp</result>
+
+		</action>
+
+		<action name="modifyGroupAction"
+			class="com.poprlz.user.web.GroupManagerAction"
+			method="modifyGroup">
+			<result name="success" type="chain">
+				queryGroupAction
+			</result>
+			<result name="input">/userInfo/groupEdit.jsp</result>
+		</action>
+
+
+		<action name="createGroupAction"
+			class="com.poprlz.user.web.GroupManagerAction"
+			method="createGroup">
+			<result name="success" type="chain">
+				queryGroupAction
+			</result>
+			<result name="input">/userInfo/groupEdit.jsp</result>
+		</action>
+
+		<action name="queryGroupAction"
+			class="com.poprlz.user.web.GroupManagerAction" method="queryGroup">
+			<result name="success">/userInfo/groupQuery.jsp</result>
+		</action>
+		<!-- Add actions here -->
+	</package>
+</struts>
