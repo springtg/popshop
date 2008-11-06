@@ -19,8 +19,8 @@ public class UserInfoManagerAction extends ActionSupport {
 	// 用户唯一标识
 	private int userInfoId;
 
-	// 用户登陆名
-	private String userName;
+	/*// 用户登陆名
+	private String userName;*/
 
 	// 用户登陆密码
 	private String userPassword;
@@ -38,13 +38,13 @@ public class UserInfoManagerAction extends ActionSupport {
 		this.userInfoId = userInfoId;
 	}
 
-	public String getUserName() {
+/*	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
+	}*/
 
 	public String getUserPassword() {
 		return userPassword;
@@ -68,14 +68,13 @@ public class UserInfoManagerAction extends ActionSupport {
 	
 	 
 	@Validations(requiredStrings = {
-			@RequiredStringValidator(message = "Please input userName!", key = "userName.error.required", fieldName = "userName", type = ValidatorType.SIMPLE, trim = true),
 			@RequiredStringValidator(message = "Please input userPassword!", key = "password.error.required", fieldName = "userPassword", type = ValidatorType.SIMPLE, trim = true) }, emails = { @EmailValidator(message = "Please input userEmail!", key = "userEmail.error.required", fieldName = "userEmail", type = ValidatorType.SIMPLE) }, intRangeFields = { @IntRangeFieldValidator(type = ValidatorType.SIMPLE, fieldName = "userInfoId", min = "0", max = "1000", message = "Value must be between ${min} and ${max}.", key = "userInfoId.error.required") })
 	public String modifyUserInfo() throws Exception {
 		
 		userInfo=new UserInfo();
 		userInfo.setUserInfoId(userInfoId);
 		userInfo.setUserEmail(userEmail);
-		userInfo.setUserName(userName);
+		//userInfo.setUserName(userName);
 		userInfo.setUserPassword(userPassword);
 		userInfo.setStutas(UserInfo.STUTAS_Y);
 		userInfo=userLogicService.saveUserInfo(userInfo);
@@ -85,13 +84,13 @@ public class UserInfoManagerAction extends ActionSupport {
 	}
 
 	@Validations(requiredStrings = {
-			@RequiredStringValidator(message = "Please input userName!", key = "userName.error.required", fieldName = "userName", type = ValidatorType.SIMPLE, trim = true),
+			
 			@RequiredStringValidator(message = "Please input userPassword!", key = "password.error.required", fieldName = "userPassword", type = ValidatorType.SIMPLE, trim = true) }, emails = { @EmailValidator(message = "Please input userEmail!", key = "userEmail.error.required", fieldName = "userEmail", type = ValidatorType.SIMPLE) })
 
 	public String registUserInfo() throws Exception {
 		userInfo=new UserInfo();
 		userInfo.setUserEmail(userEmail);
-		userInfo.setUserName(userName);
+		//userInfo.setUserName(userName);
 		userInfo.setUserPassword(userPassword);
 		userInfo.setStutas(UserInfo.STUTAS_Y);
 		userInfo=userLogicService.createUserInfo(userInfo);
@@ -113,7 +112,7 @@ public class UserInfoManagerAction extends ActionSupport {
 	@Validations(requiredStrings = { @RequiredStringValidator(message = "Please input userName!", key = "userName.error.required", fieldName = "userName", type = ValidatorType.SIMPLE, trim = true) })
 	public String checkUserName() throws Exception {
 
-		boolean result = userLogicService.isHasUserName(userName);
+		boolean result = userLogicService.isHasUserName(userEmail);
 
 		if (result)
 			return SUCCESS;
