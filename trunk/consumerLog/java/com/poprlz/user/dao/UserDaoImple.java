@@ -1,6 +1,5 @@
 package com.poprlz.user.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,8 +8,8 @@ import com.poprlz.dao.HibernateGenericDao;
 import com.poprlz.user.entity.UserInfo;
 import com.poprlz.util.PaginationSupport;
 
-public class UserDaoImple<UserInfo> extends HibernateGenericDao<UserInfo>
-		implements IUserDao<UserInfo> {
+public class UserDaoImple extends HibernateGenericDao 
+		implements IUserDao  {
 
 	 
 	public List<UserInfo> queryEntity() {
@@ -19,10 +18,10 @@ public class UserDaoImple<UserInfo> extends HibernateGenericDao<UserInfo>
 		return query.list();
 	}
 
-	public UserInfo loadUserInfo(String userName) {
+	public UserInfo loadUserInfoByUserEmail(String userEmail) {
 		Query query = this.sessionProvider.get().createQuery(
-				"from UserInfo as userInfo where userInfo.userName =:userName");
-		query.setParameter("userName", userName);
+				"from UserInfo as userInfo where userInfo.userEmail =:userEmail");
+		query.setParameter("userEmail", userEmail);
 		List userList = query.list();
 		if (userList == null || userList.size() < 1)
 			return null;
@@ -30,7 +29,7 @@ public class UserDaoImple<UserInfo> extends HibernateGenericDao<UserInfo>
 		return userInfo;
 	}
 
-	public UserInfo loadEntity(Serializable key) {
+	public Object loadEntity(Object key) {
 		Query query = this.sessionProvider
 				.get()
 				.createQuery(
@@ -66,5 +65,7 @@ public class UserDaoImple<UserInfo> extends HibernateGenericDao<UserInfo>
 		query.setMaxResults(PaginationSupport.PAGESIZE);
 		return query.list();
 	}
+
+ 
 
 }
