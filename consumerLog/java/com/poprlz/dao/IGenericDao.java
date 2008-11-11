@@ -1,21 +1,20 @@
 package com.poprlz.dao;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface IGenericDao<T> {
+public interface IGenericDao {
 	
 	 
 	
-	public T loadEntity(Serializable key); 
+	public Object loadEntity(Object key); 
 	
-	public T saveAndLoadEntity(T entity);
+	public Object saveAndLoadEntity(Object entity);
 	
-	public T modifyEntity(T entity);
+	public Object modifyEntity(Object entity);
 	
-	public boolean removeEntity(T entity);
+	public boolean removeEntity(Object entity);
 	
-	public List<T> queryEntity();
+	public List<?> queryEntity();
 	
 	
 
