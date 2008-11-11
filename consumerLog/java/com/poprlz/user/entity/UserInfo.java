@@ -27,9 +27,9 @@ public class UserInfo implements Serializable {
 	@Column(name="userInfoId")
 	private Integer userInfoId;
 
-	// 用户登陆名
+/*	// 用户登陆名
 	@Column(name="userName",length=50, nullable=false)
-	private String userName;
+	private String userName;*/
 
 	// 用户登陆密码
 	@Column(name="userPassword",length=100, nullable=false)
@@ -39,10 +39,10 @@ public class UserInfo implements Serializable {
 	@Column(name="userEmail",length=100, nullable=false)
 	private String userEmail;
 
-	// 用户所属部门
+/*	// 用户所属部门
 	@ManyToOne(targetEntity=com.poprlz.user.entity.Group.class)//cascade={CascadeType.REFRESH,CascadeType.MERGE}
 	@JoinTable(name="group_user",joinColumns=@JoinColumn(name="userInfoId"),inverseJoinColumns=@JoinColumn(name="groupId"))
-	private Group group;
+	private Group group;*/
 	
 	//private List<RoleInfo> roleInfoList;
 
@@ -75,13 +75,13 @@ public class UserInfo implements Serializable {
 		this.userInfoId = userInfoId;
 	}
 
-	public String getUserName() {
+/*	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
+	}*/
 
 	public String getUserPassword() {
 		return userPassword;
@@ -95,14 +95,14 @@ public class UserInfo implements Serializable {
 	public int hashCode() {
 		final int PRIME = 31;
 		int result = 1;
-		result = PRIME * result
-				+ ((group == null) ? 0 : group.hashCode());
+		/*result = PRIME * result
+				+ ((group == null) ? 0 : group.hashCode());*/
 		result = PRIME * result + stutas;
 		result = PRIME * result
 				+ ((userEmail == null) ? 0 : userEmail.hashCode());
 		result = PRIME * result + (int) (userInfoId ^ (userInfoId >>> 32));
-		result = PRIME * result
-				+ ((userName == null) ? 0 : userName.hashCode());
+/*		result = PRIME * result
+				+ ((userName == null) ? 0 : userName.hashCode());*/
 		result = PRIME * result
 				+ ((userPassword == null) ? 0 : userPassword.hashCode());
 		return result;
@@ -117,11 +117,11 @@ public class UserInfo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		final UserInfo other = (UserInfo) obj;
-		if (group == null) {
+		/*if (group == null) {
 			if (other.group != null)
 				return false;
 		} else if (!group.equals(other.group))
-			return false;
+			return false;*/
 		if (stutas != other.stutas)
 			return false;
 		if (userEmail == null) {
@@ -131,11 +131,11 @@ public class UserInfo implements Serializable {
 			return false;
 		if (userInfoId != other.userInfoId)
 			return false;
-		if (userName == null) {
+		/*if (userName == null) {
 			if (other.userName != null)
 				return false;
 		} else if (!userName.equals(other.userName))
-			return false;
+			return false;*/
 		if (userPassword == null) {
 			if (other.userPassword != null)
 				return false;
@@ -144,13 +144,13 @@ public class UserInfo implements Serializable {
 		return true;
 	}
 
-	public Group getGroup() {
+/*	public Group getGroup() {
 		return group;
 	}
 
 	public void setGroup(Group group) {
 		this.group = group;
-	}
+	}*/
 
 	 
 
