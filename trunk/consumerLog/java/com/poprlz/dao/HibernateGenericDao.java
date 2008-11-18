@@ -1,5 +1,6 @@
 package com.poprlz.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -33,6 +34,9 @@ public abstract  class HibernateGenericDao implements IGenericDao{
 		return entity;
 	}
 
+
+
+ 
 	 
 
 	 
