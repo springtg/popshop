@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- show sql -->
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property> 
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.use_query_cache">false</property>
+        <!-- mapping class -->
+        <mapping class="com.poprlz.user.entity.UserEntity" />
+        <mapping class="com.poprlz.user.entity.PermissionEntity" />
+        <mapping class="com.poprlz.user.entity.RoleEntity" />
+        <mapping class="com.poprlz.user.entity.RolePermissionRelation" />
+        <mapping class="com.poprlz.user.entity.SystemEntity" />
+
+<!--  
+		<mapping class="com.poprlz.consumer.entity.CategoryEntity" />
+-->
+    </session-factory>
+</hibernate-configuration>

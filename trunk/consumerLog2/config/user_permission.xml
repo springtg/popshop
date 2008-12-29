@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="user_permission" namespace="/user" extends="struts-default">
+
+        <action name="permissionCreate"  class="com.poprlz.user.web.PermissionManagerAction" method="create">
+        	<result name="input">/user/permissionSetup.jsp</result>
+            <result name="success">/user/permissionInfo.jsp</result>             
+        </action>
+        
+        <action name="permissionModify"  class="com.poprlz.user.web.PermissionManagerAction" method="modify">
+        	<result name="input">/user/permissionSetup.jsp</result>
+            <result name="success">/user/permissionInfo.jsp</result>             
+        </action>
+        
+        <action name="permissionModifySetup"  class="com.poprlz.user.web.PermissionManagerAction" method="load">
+        	<result name="success">/user/permissionEdit.jsp</result>             
+        </action>
+        
+        
+        <action name="permissionView"  class="com.poprlz.user.web.PermissionManagerAction" method="load">      
+            <result name="success">/user/permissionInfo.jsp</result>             
+        </action>
+        
+        
+        <action name="permissionRemove"  class="com.poprlz.user.web.PermissionManagerAction" method="remove">        	
+            <result name="success">/user/permissionInfo.jsp</result>             
+        </action>
+        
+        <action name="permissionList"  class="com.poprlz.user.web.PermissionManagerAction" method="listAllPermissionBySystem">
+        	 
+            <result name="success">/user/permissionListManager.jsp</result>             
+        </action>
+
+    </package>
+
+</struts>
