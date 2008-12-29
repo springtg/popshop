@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="user_system" namespace="/user" extends="struts-default">
+
+        <action name="systemCreate"  class="com.poprlz.user.web.SystemManagerAction" method="create">
+        	<result name="input">/user/systemSetup.jsp</result>
+            <result name="success">/user/systemInfo.jsp</result>             
+        </action>
+        
+        <action name="systemModify"  class="com.poprlz.user.web.SystemManagerAction" method="modify">
+        	<result name="input">/user/systemSetup.jsp</result>
+            <result name="success">/user/systemInfo.jsp</result>             
+        </action>
+        
+        <action name="systemModifySetup"  class="com.poprlz.user.web.SystemManagerAction" method="load">
+        	<result name="success">/user/systemEdit.jsp</result>             
+        </action>
+        
+        
+        <action name="systemView"  class="com.poprlz.user.web.SystemManagerAction" method="load">      
+            <result name="success">/user/systemInfo.jsp</result>             
+        </action>
+        
+        
+        <action name="systemRemove"  class="com.poprlz.user.web.SystemManagerAction" method="remove">        	
+            <result name="success">/user/systemInfo.jsp</result>             
+        </action>
+        
+        <action name="systemList"  class="com.poprlz.user.web.SystemManagerAction" method="listAllSystem">
+        	 
+            <result name="success">/user/systemListManager.jsp</result>             
+        </action>
+
+    </package>
+
+</struts>
