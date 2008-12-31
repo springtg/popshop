@@ -10,6 +10,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>User System Manager</title>
+ 
+ <script type="text/javascript">
+
+ 
+ 
+function systemModifySetupAction(systemId){
+	try{
+		$("#system_edit_DIV").dialog();
+		$("#system_edit_DIV").load("systemModifySetup.do",{"systemId":systemId});
+		
+		
+	}catch(e){
+	}
+	
+}
+
+function systemCreateSetupAction(){
+	try{
+		$("#system_setup_DIV").dialog();
+		$("#system_setup_DIV").load("systemSetup.jsp");
+		
+		
+	}catch(e){
+	}
+	
+}
+
+</script>
 </head>
 <body>
 
@@ -33,7 +61,12 @@
 			<td><c:out value="${system.systemCode}"></c:out></td>
 			<td><c:out value="${system.description}"></c:out></td>
 			<td><c:out value="${system.status}"></c:out></td>
-			<td><a href="systemModifySetup.do?systemId=${system.systemId}">edit</a></td>
+			<td>
+			<!--  
+			<a href="systemModifySetup.do?systemId=${system.systemId}">edit</a>
+			-->
+			<a href="#" onclick="systemModifySetupAction(${system.systemId})">edit</a>
+			</td>
 			<td><c:out value="${system.systemId}"></c:out></td>
 		</tr>
 		</c:forEach>
@@ -44,9 +77,22 @@
 	</c:choose>
 		
 	</tbody>
+	<tfoot>
+	<tr>
+		<td colspan="6">
+		<button onclick="systemCreateSetupAction()">create</button>
+		 
+		 
+		</td>
+	</tr>	
+	</tfoot>
 </table>
 
- 
+<div id="system_setup_DIV">
+</div>
+
+<div id="system_edit_DIV">
+</div> 
  
  
  
