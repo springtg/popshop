@@ -10,6 +10,18 @@
 <title>User Manager System</title>
 <%@include file="../common/cssHead.jsp" %>
 <%@include file="../common/jsHead.jsp" %>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $("#leftMenu_UL").accordion();
+  });
+
+function loadMainDIV(url){
+	$("#main_DIV").load(url);
+}
+
+</script>
  
  
 </head>
@@ -30,11 +42,39 @@
 <tbody>
 <tr>
 <td width="30%">
- left
+  	<ul id="leftMenu_UL">
+		<li>
+			<div></div>
+			<a href="#" onclick="loadMainDIV('systemList.do')">
+				System Manager
+				<div></div>
+			</a>
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+
+		</li>
+		<li>
+			<div></div>
+			<a href='#' >Test 2<div ></div></a>
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</li>
+		<li>
+			<div></div>
+
+			<a href='#'>Test 3<div></div></a>
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</li>
+	</ul>
+
+
 </td>
 
 <td width="70%">
+<div id="main_DIV">
  right
+ </div>
 </td>
 </tr>
 </tbody>
