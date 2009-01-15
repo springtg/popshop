@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!--
+  - Application context containing business beans.
+  -
+  - Used by all artifacts.
+  -
+  - $Id: applicationContext.xml,v 0.8 2006/04/14 Jianmin Liu $org.apache.commons.dbcp.BasicDataSource
+  -->
+
+<beans>
+   		
+   <!-- 
+   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+	destroy-method="close">
+	<property name="user" value="jack"/>
+	<property name="password" value="J.8933.ack"/>
+	<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+	<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/light"/>
+	<property name="initialPoolSize" value="10"/>
+	<property name="maxPoolSize" value="300"/>
+	<property name="minPoolSize" value="10"/>
+	<property name="checkoutTimeout" value="10000"/>
+	<property name="unreturnedConnectionTimeout" value="10000"/> 
+	<property name="acquireIncrement" value="10"/>
+	<property name="acquireRetryAttempts" value="0"/>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>org.hsqldb.jdbcDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:hsqldb:mem:lightPortal</value>
+        </property>
+        <property name="username">
+            <value>sa</value>
+        </property>
+        <property name="password">
+            <value></value>
+        </property>
+    </bean>
+    
+	   
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:mysql://localhost:3306/lightPortal</value>
+        </property>
+        <property name="username">
+            <value>root</value>
+        </property>
+        <property name="password">
+            <value></value>
+        </property>
+    </bean>
+      
+	
+ <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+   <property name="dataSource"><ref local="dataSource"/></property>
+   <property name="mappingResources">
+     <list>
+       <value>org/light/portal/model/mapping/Portal.hbm.xml</value>       
+       <value>org/light/portal/model/mapping/Portlet.hbm.xml</value>       
+       <value>org/light/portlets/group/Group.hbm.xml</value>  
+       <value>org/light/portlets/connection/Connection.hbm.xml</value>
+       <value>org/light/portlets/chat/Chat.hbm.xml</value> 
+       <value>org/light/portlets/forum/Forum.hbm.xml</value>        
+       <value>org/light/portlets/ad/Ad.hbm.xml</value>
+       <value>org/light/portlets/blog/Blog.hbm.xml</value>
+       <value>org/light/portlets/calendar/Calendar.hbm.xml</value> 
+     </list>
+     </property>
+   <property name="hibernateProperties">
+     <props>      
+       <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop> 
+       <prop key="hibernate.query.substitutions">true=1 false=0</prop>
+       <prop key="hibernate.max_fetch_depth">3</prop>
+       <prop key="hibernate.show_sql">false</prop>   
+       <prop key="hibernate.cglib.use_reflection_optimizer">false</prop>       
+       <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop> 
+	    <prop key="hibernate.cache.use_second_level_cache">true</prop>
+	    <prop key="hibernate.cache.use_query_cache">false</prop>
+	    <prop key="hibernate.cache.use_minimal_puts">false</prop> 
+	    <prop key="hibernate.jdbc.batch_versioned_data">false</prop>
+	    <prop key="hibernate.jdbc.batch_size">0</prop>
+	    <prop key="hibernate.connection.autocommit">true</prop>
+	    <prop key="hibernate.connnection.charSet">utf8</prop>
+     </props>
+   </property>
+   
+   <property name="eventListeners">
+    <map>
+     <entry key="merge">
+      <bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/>
+     </entry>
+    </map>
+   </property>
+  </bean>
+   -->          
+   <bean id="indexer" class="org.light.portal.search.spring.IndexerImpl">   	
+   </bean>
+   <bean id="searcher" class="org.light.portal.search.spring.SearcherImpl">
+   </bean>   
+      
+  <bean id="baseDao" class="org.light.portal.core.dao.hibernate.BaseDaoImpl">
+   
+   <property name="userDao"><ref local="userDao"/></property> 
+   <property name="indexer"><ref local="indexer"/></property>        
+  </bean>
+  
+  <bean id="portalDao" class="org.light.portal.core.dao.hibernate.PortalDaoImpl">
+  
+   <property name="userDao"><ref local="userDao"/></property> 
+   <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="userDao" class="org.light.portal.user.dao.hibernate.UserDaoImpl">
+  
+   <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="chatDao" class="org.light.portlets.chat.dao.hibernate.ChatDaoImpl">
+ 
+    <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="groupDao" class="org.light.portlets.group.dao.hibernate.GroupDaoImpl">
+  
+   <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="forumDao" class="org.light.portlets.forum.dao.hibernate.ForumDaoImpl">
+   
+    <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+    
+  <bean id="blogDao" class="org.light.portlets.blog.dao.hibernate.BlogDaoImpl">
+    <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+   <bean id="adDao" class="org.light.portlets.ad.dao.hibernate.AdDaoImpl">
+
+    <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="calendarDao" class="org.light.portlets.calendar.dao.hibernate.CalendarDaoImpl">
+
+    <property name="indexer"><ref local="indexer"/></property>
+  </bean>
+  
+  <bean id="contentLibraryDao" class="org.light.portal.portlet.contentlibrary.dao.hibernate.ContentLibraryDaoImpl">
+   	<property name="contentLibrary"><ref local="contentLibrary"/></property>
+  </bean>
+  
+   <bean id="portalService" class="org.light.portal.core.service.spring.PortalServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="portalDao"><ref local="portalDao"/></property> 
+    <property name="mailSender"><ref local="mailSender"/></property>	
+    <property name="welcomeMessage"><ref local="welcomeMessage"/></property>
+    <property name="inviteMessage"><ref local="inviteMessage"/></property>    
+   </bean>  
+      
+   <bean id="userService" class="org.light.portal.user.service.spring.UserServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="userDao"><ref local="userDao"/></property> 
+    <property name="chatDao"><ref local="chatDao"/></property>
+    <property name="mailSender"><ref local="mailSender"/></property>	
+    <property name="welcomeMessage"><ref local="welcomeMessage"/></property>
+    <property name="inviteMessage"><ref local="inviteMessage"/></property> 
+    <property name="newPasswordMessage"><ref local="newPasswordMessage"/></property>  
+    <property name="indexer"><ref local="indexer"/></property>     
+    <property name="searcher"><ref local="searcher"/></property>        
+   </bean>
+   
+   <bean id="chatService" class="org.light.portlets.chat.service.spring.ChatServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="chatDao"><ref local="chatDao"/></property> 
+   </bean>
+   
+   <bean id="groupService" class="org.light.portlets.group.service.spring.GroupServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="groupDao"><ref local="groupDao"/></property> 
+   </bean>
+   
+   <bean id="forumService" class="org.light.portlets.forum.service.spring.ForumServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="forumDao"><ref local="forumDao"/></property> 
+   </bean>
+      
+   <bean id="blogService" class="org.light.portlets.blog.service.spring.BlogServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="blogDao"><ref local="blogDao"/></property> 
+   </bean>
+   
+   <bean id="adService" class="org.light.portlets.ad.service.spring.AdServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="adDao"><ref local="adDao"/></property> 
+   </bean>
+   <bean id="calendarService" class="org.light.portlets.calendar.service.spring.CalendarServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="calendarDao"><ref local="calendarDao"/></property> 
+   </bean>
+
+	<bean id="contentLibraryService" class="org.light.portal.portlet.contentlibrary.service.spring.ContentLibraryServiceImpl">
+    <property name="baseDao"><ref local="baseDao"/></property> 
+    <property name="contentLibraryDao"><ref local="contentLibraryDao"/></property> 
+   </bean>
+   
+   <bean id="contentLibrary" class="org.light.portal.portlet.contentlibrary.jcr.JCRContentLibraryImpl" singleton="false" lazy-init="true"/>
+
+	
+   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>localhost</value>
+		</property>
+	</bean>
+	<bean id="welcomeMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="to">
+			<value>info@localhost</value>
+		</property>		
+		<property name="from">
+			<value>test@localhost</value>
+		</property>
+		<property name="subject">
+			<value>Welcome to.</value>
+		</property>
+	</bean>
+	<bean id="inviteMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="to">
+			<value>info@localhost</value>
+		</property>		
+		<property name="from">
+			<value>test@localhost</value>
+		</property>
+		<property name="subject">
+			<value>You has been invited.</value>
+		</property>
+	</bean>
+	
+	<bean id="newPasswordMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="to">
+			<value>info@localhost</value>
+		</property>		
+		<property name="from">
+			<value>test@localhost</value>
+		</property>
+		<property name="subject">
+			<value>Your new temporary password.</value>
+		</property>
+	</bean>
+</beans>
