@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.chat.Chat" table="Chat"  >
+   <id name="userId" column="user_id">
+	   <generator class="assigned"/>
+   </id> 
+   <property name="name"  type="string"    	column="displayName"    />
+   <property name="defaultStatus"  type="integer"    	column="defaultStatus"    />
+   <property name="currentStatus"  type="integer"    	column="currentStatus"    />   
+   <property
+     name="currentStatusDesc"
+     formula=" (select ref.statusDesc from ChatStatusRef ref where ref.statusId=currentStatus) "
+     type="java.lang.String"
+    />
+ </class>
+ 
+ <class name="org.light.portlets.chat.ChatBuddy" table="ChatBuddy"  >
+   <id name="id" column="ID">
+	   <generator class="increment"/>
+   </id>   
+   <property name="userId"  type="string"    	column="userId"    />
+   <property name="buddyUserId"  type="string"    	column="buddyUserId"    />   
+    <property
+     name="buddyCurrentStatusId"
+     formula=" (select chat.currentStatus from Chat chat where chat.user_id = buddyUserId ) "
+     type="integer"
+    />
+   <property
+     name="buddyCurrentStatus"
+     formula=" (select ref.statusDesc from ChatStatusRef ref, Chat chat where chat.user_id = buddyUserId and chat.currentStatus = ref.statusId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="buddyName"
+     formula=" (select chat.displayName from Chat chat where chat.user_id = buddyUserId ) "
+     type="java.lang.String"
+    />
+ </class>
+ 
+ <class name="org.light.portlets.chat.Chatting" table="Chatting"  >
+   <id name="id" column="ID">
+	   <generator class="increment"/>
+   </id>   
+   <property name="from"  type="string"    	column="chatFrom"    />
+   <property name="to"  type="string"    	column="chatTo"    />   
+   <property name="status"  type="integer"    	column="status"    />
+   <property
+     name="fromName"
+     formula=" (select chat.displayName from Chat chat where chat.user_id = chatFrom ) "
+     type="java.lang.String"
+    />
+   <set
+         name="chattingRecord"
+         lazy="false"
+         inverse="true"
+   		 cascade="all-delete-orphan"
+     >
+         <key>
+            <column name="chattingId" />
+         </key>
+         <one-to-many 
+             class="org.light.portlets.chat.ChattingRecord"
+         />
+   </set>     
+ </class>
+ 
+ <class name="org.light.portlets.chat.ChattingRecord" table="ChattingRecord"  >
+   <id name="id" column="ID">
+	   <generator class="increment"/>
+   </id>   
+   <property name="chattingId"  type="integer"    	column="chattingId"    />
+   <property name="name"  type="string"    	column="displayName"    />
+   <property name="content"  type="string"    	column="content"    />      
+ </class>
+ 
+ <class name="org.light.portlets.chat.ChatStatusRef" table="ChatStatusRef"  >
+   <id name="statusId" column="statusId">
+	   <generator class="assigned"/>
+   </id>   
+   <property name="statusDesc"  type="string"    	column="statusDesc"    />  
+ </class>
+ 
+</hibernate-mapping>

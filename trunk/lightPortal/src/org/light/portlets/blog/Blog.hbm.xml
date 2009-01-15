@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.blog.Blog" table="light_blog" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>      
+   <property name="userId"  type="long" 	column="userId"/>
+   <property name="postedById"  type="long" 	column="postedById"/>
+   <property name="orgId"  type="long"    	column="orgId"    />    
+   <property name="title"  type="string" 	column="title"/>
+   <property name="summary"  type="text" 	column="summary"/>
+   <property name="content"  type="text" 	column="content"/>
+   <property name="status"  type="integer"    	column="status"    />
+   <property name="score"  type="integer"    	column="score"    />
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />   
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = postedById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = postedById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = postedById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="commentCount"
+     formula=" (select count(comment.id) from light_blog_comment comment where comment.blogId = id ) "
+     type="int"
+    />
+ </class> 
+ <class name="org.light.portlets.blog.BlogComment" table="light_blog_comment" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>      
+   <property name="blogId"  type="long" 	column="blogId"/>
+   <property name="postById"  type="long" 	column="postById"/>
+   <property name="comment"  type="text" 	column="comment"/>  
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />   
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+ </class> 
+</hibernate-mapping>

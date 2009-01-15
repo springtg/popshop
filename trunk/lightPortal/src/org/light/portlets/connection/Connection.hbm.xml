@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.connection.Connection" table="light_connection"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>   
+   <property name="userId"  type="long"    	column="userId"    />
+   <property name="buddyUserId"  type="long"    	column="buddyUserId"    />   
+   <property name="type"  type="integer"    	column="type"    />      
+   <property
+     name="buddyCurrentStatusId"
+     formula=" (select chat.currentStatus from light_chat chat where chat.userId = buddyUserId ) "
+     type="int"
+    />
+    <property
+     name="photoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="photoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = buddyUserId ) "
+     type="int"
+    />
+    <property
+     name="photoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = buddyUserId ) "
+     type="int"
+    />
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="showTitleToFriends"
+     formula=" (select user.showTitleToFriends from light_user user where user.id = buddyUserId ) "
+     type="int"
+    />
+    <property
+     name="title"
+     formula=" (select portal.title from light_portal portal where portal.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="birth"
+     formula=" (select user.birth from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="city"
+     formula=" (select user.city from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="province"
+     formula=" (select user.province from light_user user where user.id = buddyUserId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastLoginDate"
+     formula=" (select user.lastLoginDate from light_user user where user.id = buddyUserId ) "
+     type="java.sql.Timestamp"
+    />
+ </class>
+  
+</hibernate-mapping>
