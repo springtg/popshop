@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.group.Group" table="light_group"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>    
+   <property name="displayName"  type="string"    	column="displayName"/>
+   <property name="categoryId"  type="long"    	column="categoryId"/>
+   <property name="openJoin"  type="integer"    	column="openJoin"/>
+   <property name="hiddenGroup"  type="integer"    	column="hiddenGroup"/>
+   <property name="memberInvite"  type="integer"    	column="memberInvite"/>
+   <property name="publicForum"  type="integer"    	column="publicForum"/>
+   <property name="memberBulletin"  type="integer"    	column="memberBulletin"/>
+   <property name="memberImage"  type="integer"    	column="memberImage"/>
+   <property name="noPicForward"  type="integer"    	column="noPicForward"/>
+   <property name="matureContent"  type="integer"    	column="matureContent"/>
+   <property name="country"  type="string"    	column="country"/>
+   <property name="province"  type="string"    	column="province"/>
+   <property name="city"  type="string"    	column="city"/>
+   <property name="postalCode"  type="string"    	column="postalCode"/>
+   <property name="shortDesc"  type="string"    	column="shortDesc"/>   
+   <property name="desc"  type="text"    	column="description"    />  
+   <property name="uri"  type="string"    	column="uri"/>    
+   <property name="photoUrl"  type="string" 	column="photoUrl"/>   
+   <property name="photoWidth"  type="integer"    	column="photoWidth"/>
+   <property name="photoHeight"  type="integer"    	column="photoHeight"/>
+   <property name="caption"  type="string"    	column="caption"/> 
+   <property name="songUrl"  type="string"    	column="songUrl"/>   
+   <property name="ownerId"  type="long"    	column="ownerId"    />
+   <property name="leaderId"  type="long"    	column="leaderId"    />
+   <property name="orgId"  type="long"    	column="orgId"    />   
+   <property name="viewCount"  type="integer"    	column="viewCount"/>    
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />
+   <property
+     name="category"
+     formula=" (select category.name from light_group_category category where category.id = categoryId) "
+     type="java.lang.String"
+    />   
+    <property
+     name="members"
+     formula=" (select count(*) from light_user_group userGroup where userGroup.groupId = id ) "
+     type="int"
+    />  
+ </class>
+ <class name="org.light.portlets.group.GroupCategory" table="light_group_category"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>     
+   <property name="orgId"  type="long"    	column="orgId"    />   
+   <property name="name"  type="string"    	column="name"    />   
+   <property
+     name="groupCount"
+     formula=" (select count(*) from light_group portalGroup where portalGroup.categoryId = id ) "
+     type="int"
+    />  
+ </class>
+ <class name="org.light.portlets.group.UserGroup" table="light_user_group" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>     
+   <property name="userId"  type="long" 	column="userId"/>
+   <property name="groupId"  type="long" 	column="groupId"/> 
+   <property name="acceptLeaderBulletin"  type="integer" 	column="acceptLeaderBulletin"/>   
+   <property name="acceptMembersBulletin"  type="integer" 	column="acceptMembersBulletin"/>   
+    <property
+     name="displayName"
+     formula=" (select light_group.displayName from light_group light_group where light_group.id = groupId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="uri"
+     formula=" (select light_group.uri from light_group light_group where light_group.id = groupId ) "
+     type="java.lang.String"
+    />   
+    <property
+     name="photoUrl"
+     formula=" (select light_group.photoUrl from light_group light_group where light_group.id = groupId ) "
+     type="java.lang.String"
+    />    
+    <property
+     name="photoWidth"
+     formula=" (select light_group.photoWidth from light_group light_group where light_group.id = groupId ) "
+     type="int"
+    />
+    <property
+     name="photoHeight"
+     formula=" (select light_group.photoHeight from light_group light_group where light_group.id = groupId ) "
+     type="int"
+    />
+    <property
+     name="openJoin"
+     formula=" (select light_group.openJoin from light_group light_group where light_group.id = groupId ) "
+     type="int"
+    />
+    <property
+     name="memberInvite"
+     formula=" (select light_group.memberInvite from light_group light_group where light_group.id = groupId ) "
+     type="int"
+    />
+    <property
+     name="userPhotoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />    
+    <property
+     name="userPhotoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = userId ) "
+     type="int"
+    />
+    <property
+     name="userPhotoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = userId ) "
+     type="int"
+    />
+    <property
+     name="userAssignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="userChosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="userDisplayName"
+     formula=" (select user.displayName from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="userCurrentStatusId"
+     formula=" (select chat.currentStatus from light_chat chat where chat.userId = userId ) "
+     type="int"
+    />
+ </class> 
+ <class name="org.light.portlets.group.GroupPicture" table="light_group_picture" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>       
+   <property name="groupId"  type="long" 	column="groupId"/>
+   <property name="pictureUrl"  type="string" 	column="pictureUrl"/>   
+   <property name="pictureWidth"  type="integer"    	column="pictureWidth"/>
+   <property name="pictureHeight"  type="integer"    	column="pictureHeight"/>
+   <property name="status"  type="integer"    	column="status"/>
+   <property name="caption"  type="string" 	column="caption"/>   
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />      
+  </class>
+ <class name="org.light.portlets.group.GroupBulletin" table="light_group_bulletin" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>       
+   <property name="groupId"  type="long" 	column="groupId"/>
+   <property name="postById"  type="long" 	column="postById"/>
+   <property name="subject"  type="string" 	column="subject"/>
+   <property name="content"  type="text" 	column="content"/>
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />   
+    <property
+     name="photoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="photoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = postById ) "
+     type="int"
+    />
+    <property
+     name="photoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = postById ) "
+     type="int"
+    />
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="userCurrentStatusId"
+     formula=" (select chat.currentStatus from light_chat chat where chat.userId = postById ) "
+     type="int"
+    />
+ </class>  
+ <class name="org.light.portlets.group.GroupForum" table="light_group_forum"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>  
+   <property name="topic"  type="string"    	column="topic"    />
+   <property name="content"  type="text"    	column="content"    />  
+   <property name="topId"  type="long"    	column="topId"/>    
+   <property name="groupId"  type="long"    	column="groupId"    />
+   <property name="postById"  type="long"    	column="postById"    />
+   <property name="lastPostId"  type="long"    	column="lastPostId"/> 
+   <property name="lastPostById"  type="long"    	column="lastPostById"/>       
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    /> 
+   <property name="lstChgTm"  type="java.sql.Timestamp"    	column="lstChgTm"    /> 
+   <property
+     name="posts"
+     formula=" (select count(*) from light_group_forum forum where forum.topId = id ) "
+     type="int"
+    />
+   <property
+     name="photoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="photoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = postById ) "
+     type="int"
+    />
+    <property
+     name="photoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = postById ) "
+     type="int"
+    />
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastPhotoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = lastPostById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastPhotoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = lastPostById ) "
+     type="int"
+    />
+    <property
+     name="lastPhotoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = lastPostById ) "
+     type="int"
+    />
+    <property
+     name="lastAssignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = lastPostById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastChosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = lastPostById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastDisplayName"
+     formula=" (select user.displayName from light_user user where user.id = lastPostById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="currentStatusId"
+     formula=" (select chat.currentStatus from light_chat chat where chat.userId = postById ) "
+     type="int"
+    />
+    <property
+     name="birth"
+     formula=" (select user.birth from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="gender"
+     formula=" (select user.gender from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="lastCurrentStatusId"
+     formula=" (select chat.currentStatus from light_chat chat where chat.userId = lastPostById ) "
+     type="int"
+    />
+ </class>
+</hibernate-mapping>

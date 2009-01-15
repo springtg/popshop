@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.ad.CategoryAd" table="light_category_ad" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>     
+   <property name="userId"  type="long" 	column="userId"/>
+   <property name="title"  type="string" 	column="title"/>
+   <property name="content"  type="text" 	column="content"/>
+   <property name="status"  type="integer"    	column="status"    />
+   <property name="category"  type="integer"    	column="category"    />
+   <property name="country"  type="string" 	column="country"/>
+   <property name="province"  type="string" 	column="province"/>
+   <property name="city"  type="string" 	column="city"/>
+   <property name="adUrl"  type="string" 	column="adUrl"/>
+   <property name="showDate"  type="date"    	column="showDate"    /> 
+   <property name="effDate"  type="date"    	column="effDate"    /> 
+   <property name="endEffDate"  type="date"    	column="endEffDate"    /> 
+   <property name="score"  type="integer"    	column="score"    />
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />   
+    <property
+     name="photoUrl"
+     formula=" (select user.photoUrl from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="photoWidth"
+     formula=" (select user.photoWidth from light_user user where user.id = userId ) "
+     type="int"
+    />
+    <property
+     name="photoHeight"
+     formula=" (select user.photoHeight from light_user user where user.id = userId ) "
+     type="int"
+    />
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+    <property
+     name="commentCount"
+     formula=" (select count(comment.id) from light_category_ad_comment comment where comment.categoryAdId = id ) "
+     type="int"
+    />
+ </class> 
+ <class name="org.light.portlets.ad.CategoryAdComment" table="light_category_ad_comment" >
+  <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>     
+   <property name="categoryAdId"  type="long" 	column="categoryAdId"/>
+   <property name="postById"  type="long" 	column="postById"/>
+   <property name="comment"  type="text" 	column="comment"/>  
+   <property name="createDate"  type="java.sql.Timestamp"    	column="createDate"    />   
+    <property
+     name="assignedUri"
+     formula=" (select user.assignedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="chosedUri"
+     formula=" (select user.chosedUri from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+    <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = postById ) "
+     type="java.lang.String"
+    />
+ </class> 
+</hibernate-mapping>

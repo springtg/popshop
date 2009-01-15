@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+  - Mapping file for the Hibernate implementation of the Clinic interface.
+ -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ 
+ <class name="org.light.portlets.chat.Chat" table="light_chat"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id> 
+   <property name="userId"  type="long" 	column="userId"/>
+   <property name="defaultStatus"  type="integer"    	column="defaultStatus"    />
+   <property name="currentStatus"  type="integer"    	column="currentStatus"    />      
+   <property
+     name="displayName"
+     formula=" (select user.displayName from light_user user where user.id = userId ) "
+     type="java.lang.String"
+    />
+ </class>
+ 
+ <class name="org.light.portlets.chat.Chatting" table="light_chatting"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>    
+   <property name="from"  type="long"    	column="chatFrom"    />
+   <property name="to"  type="long"    	column="chatTo"    />   
+   <property name="status"  type="integer"    	column="status"    />
+   
+   <set
+         name="chattingRecord"
+         lazy="false"
+         inverse="true"
+   		 cascade="all-delete-orphan"
+     >
+         <key>
+            <column name="chattingId" />
+         </key>
+         <one-to-many 
+             class="org.light.portlets.chat.ChattingRecord"
+         />
+   </set>     
+ </class>
+ 
+ <class name="org.light.portlets.chat.ChattingRecord" table="light_chatting_record"  >
+   <id name="id" column="id" type="long">
+	   <generator class="increment"/>
+   </id>   
+   <property name="chattingId"  type="long"    	column="chattingId"    />
+   <property name="name"  type="string"    	column="displayName"    />
+   <property name="content"  type="string"    	column="content"    />      
+ </class>
+ 
+ <class name="org.light.portlets.chat.ChatStatusRef" table="light_chat_status_ref"  >
+   <id name="statusId" column="statusId">
+	   <generator class="assigned"/>
+   </id>   
+   <property name="statusDesc"  type="string"    	column="statusDesc"    />  
+ </class>
+ 
+</hibernate-mapping>
