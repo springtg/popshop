@@ -1,0 +1,33 @@
+body { font-size:12px; font-family: Verdana, helvetica, arial;}
+p { font-size:12px; font-family: Verdana, helvetica, arial;}
+li { font-size:12px; font-family: Verdana, helvetica, arial;}
+label { font-size:12px; font-family: Verdana, helvetica, arial;}
+a { font-size:12px; font-family: Verdana, helvetica, arial;}
+hr { background:#DDDDDD none repeat scroll 0 0; border:medium none; clear:both; color:#DDDDDD; float:none; height:0.1em; margin:0 0 1.45em; width:100%; }
+.portlet-header2 { z-index: 2; visibility:visible;  padding : 1 25 1 5; text-align:left; font-weight: bold;}
+.portlet2-header2 { clear: both; height: 20; display: block; text-align:right;}
+.portlet2-header-title { float: left; text-align: left;  padding : 0 5 0 5; font-weight: bold;}
+.portlet-note {padding : 0 3 0 3;color: #777777;font-size:80%;}
+.portlet-note A:link {text-decoration: none; color: #3169B5;}
+.portlet-note A:visited {text-decoration: none; color: #3169B5;}
+.portlet-note A:active { text-decoration: none; color: #3169B5;} 
+.portlet-note A:hover { text-decoration: underline; color: #0088E4;}
+.portlet-note-link {color: #3169B5;font-size:80%;}
+.color-block { vertical-align: middle; float:left;width:12;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.color-input { vertical-align: middle; float:left;width:200;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.currentpage {color: #FF0000;}
+.loading { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 50%; height: 50%; margin: auto; font-size:80%; text-align:center;} 
+.portal-footer-notes {margin-right:10px;}
+	
+.portal-img-cache1 { background:url("images/spacer.gif"); }
+.portal-img-cache2 { background:url("images/refresh_on.gif"); }
+.portal-img-cache3 { background:url("images/edit_on.gif"); }
+.portal-img-cache4 { background:url("images/leave_edit_on.gif"); }
+.portal-img-cache5 { background:url("images/help_on.gif"); }
+.portal-img-cache6 { background:url("images/leave_help_on.gif"); }
+.portal-img-cache7 { background:url("images/config_on.gif"); }
+.portal-img-cache8 { background:url("images/leave_config_on.gif"); }
+.portal-img-cache9 { background:url("images/restore_on.gif"); }
+.portal-img-cache10 { background:url("images/min_on.gif"); }
+.portal-img-cache11 { background:url("images/max_on.gif"); }
+.portal-img-cache12 { background:url("images/close_on.gif"); }
