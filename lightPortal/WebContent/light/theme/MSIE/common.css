@@ -1,0 +1,16 @@
+body { font-size:12px; font-family: Verdana, helvetica, arial;}
+p { font-size:12px; font-family: Verdana, helvetica, arial;}
+li { font-size:12px; font-family: Verdana, helvetica, arial;}
+label { font-size:12px; font-family: Verdana, helvetica, arial;}
+a { font-size:12px; font-family: Verdana, helvetica, arial;}
+hr { background:#DDDDDD none repeat scroll 0 0; border:medium none; clear:both; color:#DDDDDD; float:none; height:0.1em; margin:0 0 1.45em; width:100%; }
+.portlet-header2 { z-index: 2; visibility:visible;  padding : 1 25 1 5; text-align:left; font-weight: bold;}
+.portlet2-header2 { clear: both; height: 20; display: block; text-align:right;}
+.portlet2-header-title { float: left; text-align: left;  padding : 0 5 0 5; font-weight: bold;}
+.portlet-note {padding : 0 3 0 3;color: #777777;font-size:80%;}
+.color-block { vertical-align: middle; float:left;width:12;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.color-input { vertical-align: middle; float:left;width:200;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.currentpage {color: #FF0000;}
+.loading { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 50%; height: 50%; margin: auto; font-size:80%; text-align:center;} 
+.portal-footer-notes {margin-right:10px;}
+	

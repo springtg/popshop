@@ -1,0 +1,6 @@
+.portlet-header2 { z-index: 2; visibility:visible;  padding : 1 25 1 5; text-align:left; font-size:12; font-family: Verdana, helvetica, arial; font-weight: bold;}
+.portlet2-header2 { clear: both; height: 20; font-size:12; display: block; text-align:right;}
+.portlet2-header-title { float: left; text-align: left;  padding : 0 5 0 5; font-weight: bold;}
+.color-block { float:left;width:12;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.color-input { vertical-align: middle; float:left;width:200;height:20;cursor:pointer;margin: 5 5 0 0;border:thin solid #ffffff;}
+.portlet-form-input-field-hint { color: #777777; border-color: #D5EECD; border-style: solid; border-width: 1px; font-family: Arial; font-size: 12px; }
