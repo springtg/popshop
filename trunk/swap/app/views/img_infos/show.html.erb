@@ -1,0 +1,28 @@
+<p>
+  <b>Img url:</b>
+  <%=h @img_info.img_url %>
+</p>
+
+<p>
+  <b>Length:</b>
+  <%=h @img_info.length %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @img_info.width %>
+</p>
+
+<p>
+  <b>Mark:</b>
+  <%=h @img_info.mark %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @img_info.product_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_img_info_path(@img_info) %> |
+<%= link_to 'Back', img_infos_path %>

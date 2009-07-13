@@ -1,0 +1,28 @@
+<h1>Listing img_infos</h1>
+
+<table>
+  <tr>
+    <th>Img url</th>
+    <th>Length</th>
+    <th>Width</th>
+    <th>Mark</th>
+    <th>Product</th>
+  </tr>
+
+<% for img_info in @img_infos %>
+  <tr>
+    <td><%=h img_info.img_url %></td>
+    <td><%=h img_info.length %></td>
+    <td><%=h img_info.width %></td>
+    <td><%=h img_info.mark %></td>
+    <td><%=h img_info.product_id %></td>
+    <td><%= link_to 'Show', img_info %></td>
+    <td><%= link_to 'Edit', edit_img_info_path(img_info) %></td>
+    <td><%= link_to 'Destroy', img_info, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New img_info', new_img_info_path %>
