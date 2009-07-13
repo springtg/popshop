@@ -1,0 +1,28 @@
+<p>
+  <b>Name:</b>
+  <%=h @catalog.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%=h @catalog.image %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @catalog.description %>
+</p>
+
+<p>
+  <b>Sort:</b>
+  <%=h @catalog.sort %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=h @catalog.parent_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_catalog_path(@catalog) %> |
+<%= link_to 'Back', catalogs_path %>

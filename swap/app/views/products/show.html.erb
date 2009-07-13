@@ -1,0 +1,63 @@
+<p>
+  <b>Name:</b>
+  <%=h @product.name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%=h @product.title %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @product.price %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%=h @product.size %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%=h @product.weight %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @product.quantity %>
+</p>
+
+<p>
+  <b>Shopping date:</b>
+  <%=h @product.shopping_date %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product.description %>
+</p>
+
+<p>
+  <b>Last valid:</b>
+  <%=h @product.last_valid %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @product.status %>
+</p>
+
+<p>
+  <b>Clicked count:</b>
+  <%=h @product.clicked_count %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @product.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

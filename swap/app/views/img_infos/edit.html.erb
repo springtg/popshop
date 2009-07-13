@@ -1,0 +1,32 @@
+<h1>Editing img_info</h1>
+
+<% form_for(@img_info) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :img_url %><br />
+    <%= f.text_field :img_url %>
+  </p>
+  <p>
+    <%= f.label :length %><br />
+    <%= f.text_field :length %>
+  </p>
+  <p>
+    <%= f.label :width %><br />
+    <%= f.text_field :width %>
+  </p>
+  <p>
+    <%= f.label :mark %><br />
+    <%= f.text_field :mark %>
+  </p>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @img_info %> |
+<%= link_to 'Back', img_infos_path %>
