@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :addresses
+
+  map.resources :users
+
   map.resources :img_infos
 
   map.resources :products

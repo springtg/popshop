@@ -9,7 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090709142826) do
+ActiveRecord::Schema.define(:version => 20090714145358) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "country"
+    t.string   "province"
+    t.string   "city"
+    t.string   "zone"
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "catalogs", :force => true do |t|
     t.string   "name"
@@ -41,21 +52,36 @@ ActiveRecord::Schema.define(:version => 20090709142826) do
   end
 
   create_table "products", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
+    t.string   "name",                                                                      :null => false
+    t.string   "title",                                                                     :null => false
     t.integer  "price",         :limit => 10, :precision => 10, :scale => 0
     t.string   "size"
     t.integer  "weight",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "quantity",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "quantity",      :limit => 10, :precision => 10, :scale => 0, :default => 1, :null => false
     t.date     "shopping_date"
     t.text     "description"
     t.date     "last_valid"
-    t.string   "status"
+    t.string   "status",                                                                    :null => false
     t.integer  "clicked_count"
+    t.string   "img_url"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "img_url"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "pass"
+    t.string   "name"
+    t.string   "logo_img"
+    t.date     "reg_date"
+    t.string   "user_qq"
+    t.string   "user_msn"
+    t.string   "user_skype"
+    t.string   "user_icq"
+    t.string   "user_im"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

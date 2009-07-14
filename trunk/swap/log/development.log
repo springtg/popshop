@@ -1746,3 +1746,39 @@ c2h7AAY6CkB1c2VkewA=--30ab1896337b9123cfc149526515ada62a5ccb05
 Rendering template within layouts/img_infos
 Rendering img_infos/new
 Completed in 0.15700 (6 reqs/sec) | Rendering: 0.06300 (40%) | DB: 0.03200 (20%) | 200 OK [http://127.0.0.1/img_infos/new]
+  [4;36;1mSQL (0.031000)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.094000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.109000)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateCatalogs (20090702153317)
+Migrating to CreateConfigurations (20090706134756)
+Migrating to CreateProducts (20090709140700)
+Migrating to CreateImgInfos (20090709141733)
+Migrating to AddImgUrlToProducts (20090709142826)
+Migrating to CreateUsers (20090714144817)
+  [4;36;1mSQL (0.110000)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `pass` varchar(255), `name` varchar(255), `logo_img` varchar(255), `reg_date` date, `user_qq` varchar(255), `user_msn` varchar(255), `user_skype` varchar(255), `user_icq` varchar(255), `user_im` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.032000)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090714144817')[0m
+Migrating to CreateAddresses (20090714145358)
+  [4;36;1mSQL (0.078000)[0m   [0;1mCREATE TABLE `addresses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `country` varchar(255), `province` varchar(255), `city` varchar(255), `zone` varchar(255), `content` varchar(255), `user_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.031000)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20090714145358')[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.015000)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.031000)[0m   [0mSHOW FIELDS FROM `addresses`[0m
+  [4;36;1mSQL (0.031000)[0m   [0;1mdescribe `addresses`[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSHOW KEYS FROM `addresses`[0m
+  [4;36;1mSQL (0.063000)[0m   [0;1mSHOW FIELDS FROM `catalogs`[0m
+  [4;35;1mSQL (0.031000)[0m   [0mdescribe `catalogs`[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSHOW KEYS FROM `catalogs`[0m
+  [4;35;1mSQL (0.032000)[0m   [0mSHOW FIELDS FROM `configurations`[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mdescribe `configurations`[0m
+  [4;35;1mSQL (0.015000)[0m   [0mSHOW KEYS FROM `configurations`[0m
+  [4;36;1mSQL (0.047000)[0m   [0;1mSHOW FIELDS FROM `img_infos`[0m
+  [4;35;1mSQL (0.031000)[0m   [0mdescribe `img_infos`[0m
+  [4;36;1mSQL (0.016000)[0m   [0;1mSHOW KEYS FROM `img_infos`[0m
+  [4;35;1mSQL (0.047000)[0m   [0mSHOW FIELDS FROM `products`[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mdescribe `products`[0m
+  [4;35;1mSQL (0.015000)[0m   [0mSHOW KEYS FROM `products`[0m
+  [4;36;1mSQL (0.032000)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.016000)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.422000)[0m   [0;1mSHOW KEYS FROM `users`[0m
