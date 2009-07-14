@@ -40,8 +40,11 @@ class ImgInfosController < ApplicationController
   # POST /img_infos
   # POST /img_infos.xml
   def create
-    @img_info = ImgInfo.new(params[:img_info])
 
+
+    @img_info = ImgInfo.new 
+    @img_info.img_url=upload_file(params[:img_info]['imgdata']);
+    
     respond_to do |format|
       if @img_info.save
         flash[:notice] = 'ImgInfo was successfully created.'
@@ -82,4 +85,21 @@ class ImgInfosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+   def upload_file(file)
+    if !file.original_filename.empty?
+      @filename=get_file_name(file.original_filename)
+      File.open("#{RAILS_ROOT}/public/upload/#{@filename}", "wb") do |f|
+      f.write(file.read)
+      end
+      return @filename
+    end
+  end
+
+  def get_file_name(filename)
+    if !filename.nil?
+      Time.now.strftime("%Y_%m_%d_%H_%M_%S") + '_' + filename
+    end
+  end
+  
 end
