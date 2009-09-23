@@ -2,28 +2,38 @@ package com.poprlz.entity.company;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.poprlz.entity.IdEntity;
 import com.poprlz.entity.security.User;
 
 @Entity
 // 表名与类名不相同时重新定义表名.
 @Table(name = "ProcessTask")
-public class ProcessTask {
+public class ProcessTask extends IdEntity {
 	private Task task;
 	private Process process;
 	private User operator;
 	private Date operateDate;
 	private int finishQuantity;
+	
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "TASK_ID", nullable = false, updatable = false, insertable = false)
 	public Task getTask() {
 		return task;
 	}
 
-	public void setTask(Task task) {
+		public void setTask(Task task) {
 		this.task = task;
 	}
 
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, insertable = false)
 	public Process getProcess() {
 		return process;
 	}
@@ -32,6 +42,8 @@ public class ProcessTask {
 		this.process = process;
 	}
 
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID", nullable = false, updatable = false, insertable = false)
 	public User getOperator() {
 		return operator;
 	}

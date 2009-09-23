@@ -2,7 +2,11 @@ package com.poprlz.entity.company;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.poprlz.entity.IdEntity;
@@ -11,21 +15,20 @@ import com.poprlz.entity.security.User;
 @Entity
 // 表名与类名不相同时重新定义表名.
 @Table(name = "TASKS")
-public class Task extends IdEntity{
+public class Task extends IdEntity {
 
-	
 	private String productName;
-	
+
 	private String color;
-	
+
 	private int quantity;
-	
+
 	private String status;
-	
+
 	private Date createDate;
-	
+
 	private Company company;
-	
+
 	private User createUser;
 
 	public String getProductName() {
@@ -68,6 +71,9 @@ public class Task extends IdEntity{
 		this.createDate = createDate;
 	}
 
+	
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "COMPANY_ID", nullable = false, updatable = false, insertable = false)
 	public Company getCompany() {
 		return company;
 	}
@@ -76,6 +82,8 @@ public class Task extends IdEntity{
 		this.company = company;
 	}
 
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID", nullable = false, updatable = false, insertable = false)
 	public User getCreateUser() {
 		return createUser;
 	}
@@ -83,10 +91,5 @@ public class Task extends IdEntity{
 	public void setCreateUser(User createUser) {
 		this.createUser = createUser;
 	}
-	
-	
-	
-	
-}
 
- 
+}
