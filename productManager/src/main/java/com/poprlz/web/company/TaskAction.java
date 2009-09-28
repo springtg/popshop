@@ -12,8 +12,11 @@ import org.springside.modules.orm.PropertyFilter;
 import org.springside.modules.orm.hibernate.HibernateWebUtils;
 import org.springside.modules.web.struts2.Struts2Utils;
 
+import com.poprlz.entity.company.Process;
 import com.poprlz.entity.company.Task;
+import com.poprlz.entity.security.User;
 import com.poprlz.service.ServiceException;
+import com.poprlz.service.company.ProcessManager;
 import com.poprlz.service.company.TaskManager;
 import com.poprlz.web.CrudActionSupport;
 
@@ -31,12 +34,16 @@ public class TaskAction extends CrudActionSupport<Task> {
 	@Autowired
 	private TaskManager taskManager;
 
+	@Autowired
+	private ProcessManager processManager;
+
 	// 基本属性
 	private Task entity;
 	private Long id;
 	private Page<Task> page = new Page<Task>(10);// 每页5条记录
 
-	 
+	private List<Process> processList;
+
 	// 基本属性访问函数 //
 
 	public Task getModel() {
@@ -50,7 +57,17 @@ public class TaskAction extends CrudActionSupport<Task> {
 		} else {
 			entity = new Task();
 			entity.setStatus("A");
+			entity.setCreateUser(this.getUser());
 		}
+	}
+
+	private User getUser() {
+		// TODO Auto-generated method stub
+
+		// TODO MODIFY
+		User user = new User();
+		user.setId(new Long(1));
+		return user;
 	}
 
 	public void setId(Long id) {
@@ -70,23 +87,20 @@ public class TaskAction extends CrudActionSupport<Task> {
 				.buildPropertyFilters(request);
 
 		page = taskManager.search(page, filters);
-		 
+
 		return SUCCESS;
 	}
-	
+
 	@Override
 	public String input() throws Exception {
 
 		return INPUT;
 	}
-	
-	 
+
 	public String view() throws Exception {
 
 		return INPUT;
 	}
-
- 
 
 	@Override
 	public String save() throws Exception {
@@ -112,7 +126,12 @@ public class TaskAction extends CrudActionSupport<Task> {
 		return RELOAD;
 	}
 
- 
+	public List<Process> getProcessList() {
+		if (processList == null) {
+			processList = processManager.getAll();
+		}
+		return processList;
+	}
 
 	/**
 	 * 支持使用Jquery.validate Ajax检验用户名是否重复.
