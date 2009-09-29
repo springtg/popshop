@@ -12,10 +12,12 @@ import org.springside.modules.orm.PropertyFilter;
 import org.springside.modules.orm.hibernate.HibernateWebUtils;
 import org.springside.modules.web.struts2.Struts2Utils;
 
+import com.poprlz.entity.company.Company;
 import com.poprlz.entity.company.Process;
 import com.poprlz.entity.company.Task;
 import com.poprlz.entity.security.User;
 import com.poprlz.service.ServiceException;
+import com.poprlz.service.company.CompanyManager;
 import com.poprlz.service.company.ProcessManager;
 import com.poprlz.service.company.TaskManager;
 import com.poprlz.web.CrudActionSupport;
@@ -36,15 +38,27 @@ public class TaskAction extends CrudActionSupport<Task> {
 
 	@Autowired
 	private ProcessManager processManager;
+	
+	@Autowired
+	private CompanyManager companyManager;
 
 	// 基本属性
 	private Task entity;
+	
+
 	private Long id;
 	private Page<Task> page = new Page<Task>(10);// 每页5条记录
 
 	private List<Process> processList;
+	private List<Company> companyList;
+	
+	private Long companyId;
 
 	// 基本属性访问函数 //
+
+	public void setCompanyId(Long companyId) {
+		this.companyId = companyId;
+	}
 
 	public Task getModel() {
 		return entity;
@@ -93,6 +107,10 @@ public class TaskAction extends CrudActionSupport<Task> {
 
 	@Override
 	public String input() throws Exception {
+		companyList = companyManager.getAll();
+		
+		processList = processManager.getAll();
+		
 
 		return INPUT;
 	}
@@ -108,6 +126,13 @@ public class TaskAction extends CrudActionSupport<Task> {
 		// HibernateWebUtils.mergeByCheckedIds(entity.getRoles(),
 		// checkedRoleIds,
 		// Role.class);
+
+		// this.companyManager.get(companyId);
+		// if (companyId > 0) {
+		Company company = new Company();
+		company.setId(new Long(3));
+		entity.setCompany(company);
+		// }
 
 		taskManager.save(entity);
 		addActionMessage("保存任务成功");
@@ -127,10 +152,13 @@ public class TaskAction extends CrudActionSupport<Task> {
 	}
 
 	public List<Process> getProcessList() {
-		if (processList == null) {
-			processList = processManager.getAll();
-		}
+		 
 		return processList;
+	}
+	
+	public List<Company> getCompanyList() {
+		 
+		return companyList;
 	}
 
 	/**

@@ -23,10 +23,10 @@
 </div>
 
 <div id="message"><s:actionmessage theme="mytheme"/></div>
-<form id="mainForm" action="process.action" method="get">
+<form id="mainForm" action="task.action" method="get">
 <div id="filter">
  
- 	加工工序: <input type="text" name="filter_LIKE_processName" value="${param['filter_LIKE_processName']}" size="9"/>
+ 	产品名称: <input type="text" name="filter_LIKE_productName" value="${param['filter_LIKE_productName']}" size="9"/>
 	<input type="button" value="搜索" onclick="search()"/>
 </div> 
 <input type="hidden" name="page.pageNo" id="pageNo" value="${page.pageNo}"/>
@@ -36,7 +36,10 @@
 <table>
 	<tr>
 		<th><a href="javascript:sort('id','asc')"><b>序号</b></a></th>
-		<th><a href="javascript:sort('processName','asc')""><b>加工工序</b></a></th>
+		<th><a href="javascript:sort('company.companyName','asc')""><b>公司名称</b></a></th>
+		<th><a href="javascript:sort('productName','asc')""><b>加工产品名称</b></a></th>
+		<th><a href="javascript:sort('color','asc')""><b>颜色</b></a></th>
+		<th><a href="javascript:sort('quantity','asc')""><b>计划数</b></a></th>
 	 
 		<th><b>操作</b></th>
 	</tr>
@@ -44,12 +47,15 @@
 	<s:iterator value="page.result">
 		<tr>
 			<td>${id}&nbsp;</td>
-			<td>${processName}&nbsp;</td>
+			<td>${company.companyName}&nbsp;</td>
+			<td>${productName}&nbsp;</td>
+			<td>${color}&nbsp;</td>
+			<td>${quantity}&nbsp;</td>
 			 		
 			<td>&nbsp; 
 				<security:authorize ifAnyGranted="A_MODIFY_USER">
-					<a href="process!input.action?id=${id}">修改</a>、
-					<a href="process!delete.action?id=${id}">删除</a>
+					<a href="task!input.action?id=${id}">修改</a>、
+					<a href="task!delete.action?id=${id}">删除</a>
 				</security:authorize>
 			</td>
 		</tr>
@@ -65,7 +71,7 @@
 	<a href="javascript:jumpPage(${page.totalPages})">末页</a>
 	
 	<security:authorize ifAnyGranted="A_MODIFY_USER">
-		<a href="process!input.action">增加加工工序</a>
+		<a href="task!input.action">增加加工工序</a>
 	</security:authorize>
 </div>
 </form>

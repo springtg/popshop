@@ -36,10 +36,10 @@ public class ProcessTaskManager extends EntityManager<ProcessTask, Long> {
 	 */
 	@Override
 	public void delete(Long id) {
-		ProcessTask processTask = processTaskDao.get(id);
-		processTask.setStatus("N");
-		processTaskDao.save(processTask);
-
+		/*
+		 * ProcessTask processTask = processTaskDao.get(id);
+		 * processTask.setStatus("N"); processTaskDao.save(processTask);
+		 */
 		 
 	}
 
