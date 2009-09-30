@@ -101,7 +101,7 @@ public class TaskAction extends CrudActionSupport<Task> {
 				.buildPropertyFilters(request);
 
 		page = taskManager.search(page, filters);
-
+		processList = processManager.getAll();
 		return SUCCESS;
 	}
 

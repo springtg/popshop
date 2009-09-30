@@ -1,12 +1,15 @@
 package com.poprlz.entity.company;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.poprlz.entity.IdEntity;
@@ -30,6 +33,8 @@ public class Task extends IdEntity {
 	private Company company;
 
 	private User createUser;
+	
+	private Map<Process, ProcessTask> processTaskMap;
 
 	public String getProductName() {
 		return productName;
@@ -73,7 +78,7 @@ public class Task extends IdEntity {
 
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "COMPANY_ID", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "COMPANY_ID", nullable = false, updatable = true, insertable = true)
 	public Company getCompany() {
 		return company;
 	}
@@ -83,7 +88,7 @@ public class Task extends IdEntity {
 	}
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "USER_ID", nullable = false, updatable = true, insertable = true)
 	public User getCreateUser() {
 		return createUser;
 	}
@@ -91,5 +96,18 @@ public class Task extends IdEntity {
 	public void setCreateUser(User createUser) {
 		this.createUser = createUser;
 	}
+
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, targetEntity = ProcessTask.class)
+	@JoinColumn(name = "TASK_ID")
+	@MapKey(name = "process")
+	public Map<Process, ProcessTask> getProcessTaskMap() {
+		return processTaskMap;
+	}
+
+	public void setProcessTaskMap(Map<Process, ProcessTask> processTaskMap) {
+		this.processTaskMap = processTaskMap;
+	}
+	
+	
 
 }

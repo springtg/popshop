@@ -14,7 +14,7 @@ import com.poprlz.entity.security.User;
 
 @Entity
 // 表名与类名不相同时重新定义表名.
-@Table(name = "ProcessTask")
+@Table(name = "Process_Task")
 public class ProcessTask extends IdEntity {
 	private Task task;
 	private Process process;
@@ -23,7 +23,7 @@ public class ProcessTask extends IdEntity {
 	private int finishQuantity;
 	
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "TASK_ID", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "TASK_ID", nullable = false, updatable = true, insertable = true)
 	public Task getTask() {
 		return task;
 	}
@@ -33,7 +33,7 @@ public class ProcessTask extends IdEntity {
 	}
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "PROCESS_ID", nullable = false, updatable = true, insertable = true)
 	public Process getProcess() {
 		return process;
 	}
@@ -43,7 +43,7 @@ public class ProcessTask extends IdEntity {
 	}
 
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID", nullable = false, updatable = false, insertable = false)
+	@JoinColumn(name = "USER_ID", nullable = false, updatable = true, insertable = true)
 	public User getOperator() {
 		return operator;
 	}
