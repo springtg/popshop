@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="com.poprlz.mall.manufacturer" namespace="/manufacturer" extends="struts-default">
+
+        <action name="manufacturerEdit" class="com.poprlz.mall.manufacturer.web.ManufacturerManagerAction" method="input">
+            <result name="input">/manufacturer/edit.jsp</result>
+            <result name="success">/manufacturer/edit.jsp</result>
+        </action>
+        
+        <action name="manufacturerSave" class="com.poprlz.mall.manufacturer.web.ManufacturerManagerAction" method="save">
+            <result name="input">/manufacturer/edit.jsp</result>
+            <result name="success">/manufacturer/list.jsp</result>
+        </action>
+
+         
+
+        <!-- Add actions here -->
+    </package>
+</struts>
