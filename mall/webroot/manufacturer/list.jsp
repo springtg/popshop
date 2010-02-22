@@ -19,9 +19,9 @@
 <div id="message"><!--s:actionmessage theme="mytheme"/--></div>
 <form id="mainForm" action="user.action" method="get">
  
-<input type="hidden" name="page.pageNo" id="pageNo" value="${page.pageNo}"/>
-<input type="hidden" name="page.orderBy" id="orderBy" value="${page.orderBy}"/>
-<input type="hidden" name="page.order" id="order" value="${page.order}" />
+<input type="hidden" name="page.pageNo" id="pageNo" value="${manufacturerPage.pageNo}"/>
+<input type="hidden" name="page.orderBy" id="orderBy" value="${manufacturerPage.orderBy}"/>
+<input type="hidden" name="page.order" id="order" value="${manufacturerPage.order}" />
 <div id="listContent">
 <table>
 	<tr>
@@ -34,7 +34,7 @@
 		<th><b>delete</b></th>
 	</tr>
 
-	<s:iterator value="page.result">
+	<s:iterator value="manufacturerPage.result">
 		<tr>
 			<td>${manufacturersId}&nbsp;</td>
 			<td>${manufacturersName}&nbsp;</td>
@@ -58,11 +58,11 @@
 </table>
 </div>
 <div id="footer">
-	第${page.pageNo}页, 共${page.totalPages}页 
+	第${manufacturerPage.pageNo}页, 共${manufacturerPage.totalPages}页 
 	<a href="javascript:jumpPage(1)">首页</a>
-	<s:if test="page.hasPre"><a href="javascript:jumpPage(${page.prePage})">上一页</a></s:if>
-	<s:if test="page.hasNext"><a href="javascript:jumpPage(${page.nextPage})">下一页</a></s:if>
-	<a href="javascript:jumpPage(${page.totalPages})">末页</a>
+	<s:if test="manufacturerPage.hasPre"><a href="javascript:jumpPage(${manufacturerPage.prePage})">上一页</a></s:if>
+	<s:if test="manufacturerPage.hasNext"><a href="javascript:jumpPage(${manufacturerPage.nextPage})">下一页</a></s:if>
+	<a href="javascript:jumpPage(${manufacturerPage.totalPages})">末页</a>
 	
 	 
 		<a href="manufacturerEdit.action">new</a>
