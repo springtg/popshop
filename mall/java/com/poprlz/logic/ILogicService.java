@@ -10,6 +10,8 @@ public interface ILogicService<T,ID extends Serializable> {
 	
 	public T saveEntity(T entity);
 	
+	public T updateEntity(T entity);
+	
 	public void removeEntity(T entity);
 	
 	public List<T> findAllEntitys();

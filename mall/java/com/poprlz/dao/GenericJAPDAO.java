@@ -8,9 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
-
-public class GenericJAPDAO<T, ID extends Serializable>  implements
+public class GenericJAPDAO<T, ID extends Serializable> implements
 		IGenericDAO<T, ID> {
 
 	@PersistenceContext
@@ -37,8 +35,8 @@ public class GenericJAPDAO<T, ID extends Serializable>  implements
 
 	@Override
 	public List<T> findAllEntitys() {
-		 String sqlCmd="SELECT o FROM "+this.getPersistentClass()+" o ";
-		 
+		String sqlCmd = "SELECT o FROM " + this.getPersistentClass() + " o ";
+
 		return (List<T>) this.excuteQuery(sqlCmd);
 	}
 
@@ -57,13 +55,24 @@ public class GenericJAPDAO<T, ID extends Serializable>  implements
 	@Override
 	public T saveEntity(T entity) {
 		// TODO Auto-generated method stub
+
 		getEntityManager().persist(entity);
+
 		System.out.println("Dao Save the Entity!");
 		return entity;
 	}
 
-	public List<? extends Object> excuteQuery(String sqlCmd, int firstResultIndex,
-			int maxResults, Object... parameters) {
+	public T updateEntity(T entity) {
+		// TODO Auto-generated method stub
+
+		getEntityManager().merge(entity);
+
+		System.out.println("Dao Save the Entity!");
+		return entity;
+	}
+
+	public List<? extends Object> excuteQuery(String sqlCmd,
+			int firstResultIndex, int maxResults, Object... parameters) {
 		Query query = this.getEntityManager().createQuery(sqlCmd);
 		query.setFirstResult(firstResultIndex);
 		query.setMaxResults(maxResults);
@@ -72,19 +81,44 @@ public class GenericJAPDAO<T, ID extends Serializable>  implements
 			query.setParameter(index, parameter);
 			index++;
 		}
+
 		return query.getResultList();
 	}
-	
-	
-	public List<? extends Object> excuteQuery(String sqlCmd, Object... parameters) {
+
+	public List<? extends Object> excuteQuery(String sqlCmd,
+			Object... parameters) {
 		Query query = this.getEntityManager().createQuery(sqlCmd);
-		
+
 		int index = 1;
 		for (Object parameter : parameters) {
 			query.setParameter(index, parameter);
 			index++;
 		}
 		return query.getResultList();
+	}
+
+	public Object excuteQueryData(String sqlCmd, Object... parameters) {
+		Query query = this.getEntityManager().createQuery(sqlCmd);
+
+		int index = 1;
+		for (Object parameter : parameters) {
+			query.setParameter(index, parameter);
+			index++;
+		}
+		
+		Object result =query.getSingleResult();
+		
+		return result;
+		 
+	}
+	
+	public Integer excuteQueryIntegerData(String sqlCmd, Object... parameters) {
+		 
+		
+		Integer result =(Integer)excuteQueryData(sqlCmd,parameters);
+		
+		return result;
+		 
 	}
 
 }

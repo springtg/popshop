@@ -22,13 +22,13 @@ public class ManufacturerManagerAction extends
 	private Manufacturer manufacturer;
 
 	private Integer id;
+	
+	private int pageIndex;
 
-	private Page<Manufacturer> manufacturerList;
+	private Page<Manufacturer> manufacturerPage;
 
-	@Resource(name="manufacturerLogicService")
+	@Resource(name = "manufacturerLogicService")
 	private IManufacturerLogicService manufacturerLogicService;
-	
-	
 
 	public Manufacturer getManufacturer() {
 		return manufacturer;
@@ -46,10 +46,6 @@ public class ManufacturerManagerAction extends
 		this.id = id;
 	}
 
-	public Page<Manufacturer> getManufacturerList() {
-		return manufacturerList;
-	}
-
 	public void setManufacturerLogicService(
 			IManufacturerLogicService manufacturerLogicService) {
 		this.manufacturerLogicService = manufacturerLogicService;
@@ -57,38 +53,47 @@ public class ManufacturerManagerAction extends
 
 	@Override
 	public String delete() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		manufacturerLogicService.removeEntity(manufacturer);
+		 
+		return list();
 	}
 
 	@Override
 	public String list() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("List Query");
+		 manufacturerPage=manufacturerLogicService.listManufacturerPage(pageIndex,10);
+	 
+		return SUCCESS;
 	}
 
 	@Override
 	protected void prepareModel() throws Exception {
+
+		if (id != null && id > 0) {
+			manufacturer = this.manufacturerLogicService.loadEntityById(id);
+		}
+
+		Calendar cal = Calendar.getInstance();
 		if (manufacturer == null) {
-			Calendar cal = Calendar.getInstance();
+
 			manufacturer = new Manufacturer();
 			manufacturer.setDateAdded(cal.getTime());
 			manufacturer.setDateLastClick(cal.getTime());
-			manufacturer.setLastModified(cal.getTime());
+
 		}
+		manufacturer.setLastModified(cal.getTime());
 	}
 
 	@Override
 	@Validations(requiredStrings = { @RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "manufacturer.manufacturersName", message = "The Name Can not by empty!") })
 	public String save() throws Exception {
-	
-		manufacturerList=new Page<Manufacturer>(10);
-		manufacturerLogicService.saveEntity(manufacturer);
-		List<Manufacturer> result=new ArrayList<Manufacturer>();
-		result.add(this.manufacturer);
-		manufacturerList.setResult(result);
-		 
-		return SUCCESS;
+
+		if (manufacturer.getManufacturersId() < 0) {
+			manufacturerLogicService.saveEntity(manufacturer);
+		} else {
+			manufacturerLogicService.updateEntity(manufacturer);
+		}
+		return list();
 	}
 
 	@Override
@@ -107,6 +112,10 @@ public class ManufacturerManagerAction extends
 	public String input() throws Exception {
 		prepareModel();
 		return SUCCESS;
+	}
+
+	public Page<Manufacturer> getManufacturerPage() {
+		return manufacturerPage;
 	}
 
 }

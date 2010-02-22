@@ -39,5 +39,12 @@ public abstract class GenericLogicService<T, ID extends Serializable>
 		System.out.println("saveEntity is Working ");
 		return getIGenericDAO().saveEntity(entity);
 	}
+	
+	 
+	@Transactional
+	public T updateEntity(T entity) {
+		System.out.println("saveEntity is Working ");
+		return getIGenericDAO().updateEntity(entity);
+	}
 
 }
