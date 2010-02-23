@@ -17,7 +17,7 @@
 
 <!--   main content-->
 <div id="message"><!--  s:actionmessage theme="mytheme"/--></div>
-<form action="manufacturerSave.action" method="post">
+<form action="save.action" method="post">
 
 
 	manufacturersId: <input type="text" name="manufacturersId" value="${manufacturer.manufacturersId}"/><br/>

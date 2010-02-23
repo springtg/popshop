@@ -3,11 +3,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Mini-Web 帐号管理</title>
+	<title>manufacturer</title>
 	<%@ include file="/common/meta.jsp"%>
 	<%@ include file="/common/css.jsp"%>
 	<%@ include file="/common/javascript.jsp"%>
-	
+	<script type="javascript">
+		function jumpPage(index){
+			searchForm.pageIndex=index;
+			searchForm.submit();
+
+		}
+	</script>
 		
 </head>
 
@@ -17,8 +23,8 @@
 
 <!--   main content-->
 <div id="message"><!--s:actionmessage theme="mytheme"/--></div>
-<form id="mainForm" action="user.action" method="get">
- 
+<form id="searchForm" name="searchForm"  action="search.action" method="get">
+<input type="hidden" name="pageIndex" id="pageIndex"/>
 <input type="hidden" name="page.pageNo" id="pageNo" value="${manufacturerPage.pageNo}"/>
 <input type="hidden" name="page.orderBy" id="orderBy" value="${manufacturerPage.orderBy}"/>
 <input type="hidden" name="page.order" id="order" value="${manufacturerPage.order}" />
@@ -43,13 +49,13 @@
 			<td>${urlClicked}&nbsp;</td>			
 			<td>&nbsp; 
 				 
-					<a href="manufacturerEdit.action?id=${manufacturersId}">edit</a>
+					<a href="edit.action?id=${manufacturersId}">edit</a>
 					 
 				 
 			</td>
 			<td>&nbsp; 
 				 
-					<a href="manufacturerDelete.action?id=${manufacturersId}">delete</a>
+					<a href="delete.action?id=${manufacturersId}">delete</a>
 					 
 				 
 			</td>
@@ -63,9 +69,7 @@
 	<s:if test="manufacturerPage.hasPre"><a href="javascript:jumpPage(${manufacturerPage.prePage})">上一页</a></s:if>
 	<s:if test="manufacturerPage.hasNext"><a href="javascript:jumpPage(${manufacturerPage.nextPage})">下一页</a></s:if>
 	<a href="javascript:jumpPage(${manufacturerPage.totalPages})">末页</a>
-	
-	 
-		<a href="manufacturerEdit.action">new</a>
+	<a href="edit.action">new</a>
 	 
 </div>
 </form>
