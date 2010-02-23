@@ -222,4 +222,22 @@ public class Page<T> {
 		else
 			return pageNo;
 	}
+	
+	public static int convertFirstResultIndex(int pageIndex,int pageSize){
+		int result= ((pageIndex - 1) * pageSize) + 1;
+		if(result>=1){
+			return result;
+		}
+		
+		return 1;
+	}
+	
+	public static int convertPageNo(int firstResultIndex,int pageSize){
+		int result= (firstResultIndex%pageSize);
+		if(result>=1){
+			return result;
+		}
+		
+		return 1;
+	}
 }

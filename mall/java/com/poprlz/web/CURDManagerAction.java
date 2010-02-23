@@ -14,22 +14,7 @@ public abstract class CURDManagerAction<T,ID extends Serializable> extends Actio
 
 	 
 	
-	/**
-	 * Action函数,默认action函数，默认指向list函数.
-	 */
-	@Override
-	public String execute() throws Exception {
-		return list();
-	}
-
-	// CRUD函数 //
-
-	/**
-	 * Action函数,显示Entity列表.
-	 * 建议return SUCCESS.
-	 */
-	public abstract String list() throws Exception;
-
+	 
 	/**
 	 * Action函数,新增或修改Entity. 
 	 * 建议return RELOAD.
@@ -45,8 +30,15 @@ public abstract class CURDManagerAction<T,ID extends Serializable> extends Actio
 	public abstract String input() throws Exception;
 
 	// Preparable函数 //
+	/**
+	 * 在delete()前执行二次绑定.
+	 */
+	public void prepareDelete() throws Exception {
+		prepareModel();
+	}
 
-	 
+	
+	
 
 	/**
 	 * 在save()前执行二次绑定.

@@ -1,15 +1,11 @@
 package com.poprlz.mall.manufacturer.web;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import com.opensymphony.xwork2.validator.annotations.Validations;
 import com.opensymphony.xwork2.validator.annotations.ValidatorType;
 import com.poprlz.mall.entity.Manufacturer;
 import com.poprlz.mall.manufacturer.logic.IManufacturerLogicService;
@@ -24,6 +20,10 @@ public class ManufacturerManagerAction extends
 	private Integer id;
 	
 	private int pageIndex;
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
 
 	private Page<Manufacturer> manufacturerPage;
 
@@ -55,16 +55,15 @@ public class ManufacturerManagerAction extends
 	public String delete() throws Exception {
 		manufacturerLogicService.removeEntity(manufacturer);
 		 
-		return list();
-	}
-
-	@Override
-	public String list() throws Exception {
-		System.out.println("List Query");
-		 manufacturerPage=manufacturerLogicService.listManufacturerPage(pageIndex,10);
-	 
 		return SUCCESS;
 	}
+	
+ 
+	
+	
+	
+
+ 
 
 	@Override
 	protected void prepareModel() throws Exception {
@@ -88,12 +87,12 @@ public class ManufacturerManagerAction extends
 	@Validations(requiredStrings = { @RequiredStringValidator(type = ValidatorType.SIMPLE, fieldName = "manufacturer.manufacturersName", message = "The Name Can not by empty!") })
 	public String save() throws Exception {
 
-		if (manufacturer.getManufacturersId() < 0) {
+		if (manufacturer.getManufacturersId() <=0) {
 			manufacturerLogicService.saveEntity(manufacturer);
 		} else {
 			manufacturerLogicService.updateEntity(manufacturer);
 		}
-		return list();
+ 		return SUCCESS;
 	}
 
 	@Override
